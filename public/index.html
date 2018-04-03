@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <link href="print.css" rel="stylesheet" media="print">
+</head>
+
+<body>
+
+    <div id="messageBox" class="demoMessage">
+        <span>Loading ...</span>
+        <!--            <button id="hideBtn">X</button>-->
+    </div>
+
+
+    <!--   main page explaining about the app -->
+
+    <main id='intro' class='js-main-page'>
+        <h1><img src="images/logo.jpeg" class="logo" alt="">Find Delicious Recipes Easily!</h1>
+        <p class="heading">Search, Print & GO!</p>
+        <ol class="instructions">
+            <li>Search for delicious recipes.</li>
+            <li>Select recipes or save to favorites</li>
+            <li>Create a shopping list for the recipes.</li>
+            <li>Edit the shopping list.</li>
+            <li>Print & GO!</li>
+        </ol>
+        <button type="submit" class="enter">Enter</button>
+    </main>
+
+
+    <!--   login form-->
+
+    <main class="js-login-page">
+        <form action="#" class="js-login-form">
+            <h2><img src="images/logo.jpeg" class="logo" alt="">Login Form</h2>
+            <div class="container">
+                <label for="uname"><b>Username</b></label>
+                <input type="text" id="sign-in-username" placeholder="Enter Username" name="uname" value="demo@domain.com" required>
+
+                <label for="psw"><b>Password</b></label>
+                <input type="password" id="sign-in-password" placeholder="Enter Password" name="psw" value="demo" required>
+                <button type="submit" class="login">Login</button>
+            </div>
+
+            <div class="newuser-box">
+                <!--           <button type="button" class="cancelbtn">Cancel</button>-->
+                <span class="newuser">Register as <a href="#" class="newuserlink">new user?</a></span>
+                <!--            <span class="psw">Forgot <a href="#">password?</a></span>-->
+            </div>
+        </form>
+    </main>
+
+    <!--   register as new user -->
+    <main class="js-newuser-page">
+        <form action="#" class="js-newuser-form">
+            <h2><img src="images/logo.jpeg" class="logo" alt="">Register as New User</h2>
+            <div class="container">
+                <div class="row">
+                    <div class="col-25">
+                        <label for="fname">First Name</label>
+                    </div>
+                    <div class="col-75">
+                        <input type="text" id="fname" name="firstname" placeholder="First Name" value="">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-25">
+                        <label for="lname">Last Name</label>
+                    </div>
+                    <div class="col-75">
+                        <input type="text" id="lname" name="lastname" placeholder="Last Name" value="">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-25">
+                        <label for="email">Email address</label>
+                    </div>
+                    <div class="col-75">
+                        <input type="text" id="email" name="email" placeholder="Email Address" value="">
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="row">
+                        <div class="col-25">
+                            <label for="npassword">New Password</label>
+                        </div>
+                        <div class="col-75">
+                            <input type="text" id="npassword" name="npassword" placeholder="New Password" value="">
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="row">
+                            <div class="col-25">
+                                <label for="cpassword">Confirm Password</label>
+                            </div>
+                            <div class="col-75">
+                                <input type="text" id="cpassword" name="cpassword" placeholder="Confirm Password" value="">
+                            </div>
+                        </div>
+                        <div class="row">
+                            <button type="submit" class="registerbtn">Register</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="newuser-box">
+                <!--           <button type="button" class="cancelbtn">Cancel</button>-->
+                <span class="sign-in-trigger">Already Registered? <a href="#" class="signinlink">Sign In</a></span>
+                <!--            <span class="psw">Forgot <a href="#">password?</a></span>-->
+            </div>
+        </form>
+    </main>
+
+    <!--search recipes-->
+    <main class="js-search-page">
+        <form action="#" class="js-search-form">
+            <h2><img src="images/logo.jpeg" class="logo" alt="">Search Recipes</h2>
+            <div class="container">
+                <label for="query"></label>
+                <input value="" type="text" class="js-query" placeholder="Search Recipes Here">
+                <input value="" type="hidden" class="js-query-username" value="">
+                <button type="submit" id="findIt" class="searchbtn">Search</button>
+            </div>
+        </form>
+    </main>
+
+    <!--list of recipes-->
+    <main class="js-ingredients-page">
+        <!--    <form action="#" class="js-ingredients-form">-->
+        <h2><img src="images/logo.jpeg" class="logo" alt="">Recipes</h2>
+        <div class="container-box">
+            <ul class="yummly-search-results">
+                <!--
+<li>
+    <div class="recipetitle">
+        <label for="title">Title of Recipes</label>
+    </div>
+    <img src="images/recipe.jpg" class="recipe" alt="">
+    <div class="recipes">
+        <ul class="recipeslist">
+            <li>instructions</li>
+            <li>instructions</li>
+            <li>instructions</li>
+        </ul>
+    </div>
+    <button type="button" class="addbtn">Add to list</button>
+</li>
+
+<li>
+    <div class="recipetitle">
+        <label for="title">Title of Recipes</label>
+    </div><img src="images/recipe.jpg" class="recipe" alt="">
+    <div class="recipes">
+        <ul class="recipeslist">
+            <li>instructions</li>
+            <li>instructions</li>
+            <li>instructions</li>
+        </ul>
+    </div>
+    <button type="button" class="addbtn">Add to list</button></li>
+<li>
+    <div class="recipetitle">
+        <label for="title">Title of Recipes</label>
+    </div><img src="images/recipe.jpg" class="recipe" alt="">
+    <div class="recipes">
+        <ul class="recipeslist">
+            <li>instructions</li>
+            <li>instructions</li>
+            <li>instructions</li>
+        </ul>
+    </div>
+    <button type="button" class="addbtn">Add to list</button></li>
+<li>
+    <div class="recipetitle">
+        <label for="title">Title of Recipes</label>
+    </div><img src="images/recipe.jpg" class="recipe" alt="">
+    <div class="recipes">
+        <ul class="recipeslist">
+            <li>instructions</li>
+            <li>instructions</li>
+            <li>instructions</li>
+        </ul>
+    </div>
+    <button type="button" class="addbtn">Add to list</button></li>-->
+
+            </ul>
+            <div class="container continueBtnWrapper">
+                <label for="query"></label>
+                <button type="submit" id="continue" class="continuebtn">Continue</button>
+            </div>
+        </div>
+        <!--    </form>-->
+    </main>
+
+
+
+
+    <!--   shopping list of ingredients-->
+    <main class="js-shoppinglist-page">
+        <!--    <form action="#" class="js-shoppinglist-form">-->
+        <h2><img src="images/logo.jpeg" class="logo" alt="">Shopping List</h2>
+        <div class="container">
+            <ul>
+                <!--
+                <li>
+                    <div class="ingredients-box">
+                        <label for="ingredients">ingredients</label>
+                        <ul class="ingredientslist">
+                            <li>ingredients</li>
+                            <li>ingredients</li>
+                            <li>ingredients</li>
+                        </ul>
+                        <button type="button" class="deletebtn">Delete</button>
+                    </div>
+                </li>
+                <li>
+                    <div class="ingredients-box">
+                        <label for="ingredients">ingredients</label>
+                        <ul class="ingredientslist">
+                            <li>ingredients</li>
+                            <li>ingredients</li>
+                            <li>ingredients</li>
+                        </ul>
+                        <button type="button" class="deletebtn">Delete</button></div>
+                </li>
+                <li>
+                    <div class="ingredients-box">
+                        <label for="ingredients">ingredients</label>
+                        <ul class="ingredientslist">
+                            <li>ingredients</li>
+                            <li>ingredients</li>
+                            <li>ingredients</li>
+                        </ul>
+                        <button type="button" class="deletebtn">Delete</button></div>
+                </li>
+                <li>
+                    <div class="ingredients-box">
+                        <label for="ingredients">ingredients</label>
+                        <ul class="ingredientslist">
+                            <li>ingredients</li>
+                            <li>ingredients</li>
+                            <li>ingredients</li>
+                        </ul>
+                        <button type="button" class="deletebtn">Delete</button> </div>
+                </li>
+                <li>
+                    <div class="ingredients-box">
+                        <label for="ingredients">ingredients</label>
+                        <ul class="ingredientslist">
+                            <li>ingredients</li>
+                            <li>ingredients</li>
+                            <li>ingredients</li>
+                        </ul>
+                        <button type="button" class="deletebtn">Delete</button></div>
+                </li>
+                <li>
+                    <div class="ingredients-box">
+                        <label for="ingredients">ingredients</label>
+                        <ul class="ingredientslist">
+                            <li>ingredients</li>
+                            <li>ingredients</li>
+                            <li>ingredients</li>
+                        </ul>
+                        <button type="button" class="deletebtn">Delete</button></div>
+                </li>
+-->
+            </ul>
+            <div class="container" id="optionbox">
+                <label for="query"></label>
+                <input value="" type="text" class="js-query-ingredient-name" placeholder="Add Ingredient">
+                <input value="" type="text" class="js-query-ingredient-qty" placeholder="Ingredient Quantity">
+                <button type="button" class='optionbutton1' id="addbutton">Add More Ingredients</button>
+                <button type="button" class='optionbutton1' id="print">Print</button>
+                <button type="button" class='optionbutton1' id="returnbtn">Return to Search</button>
+                <button type="button" class='optionbutton1' id="returnmain">Return to Main Page</button>
+            </div>
+
+
+        </div>
+        <!--    </form>-->
+    </main>
+
+    <!--footer-->
+
+    <footer>
+        <p>&copy;2018 Diane Cho</p>
+        <ul>
+
+            <li>
+                <a href="https://github.com/DianeCho"><img src="images/github-logo.png" alt="Git Hub Logo"></a>
+            </li>
+            <li>
+                <a href='mailto:diane.kim.cho@gmail.com'><img src="images/email-logo.jpeg" alt="Email Logo"></a>
+            </li>
+            <li>
+                <a href='https://www.linkedin.com/in/dianecho/'><img src="images/linkedin-logo.png" alt="linked in  Logo"></a>
+            </li>
+        </ul>
+
+
+    </footer>
+
+
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js" integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8=" crossorigin="anonymous"></script>
+    <script src="client.js"></script>
+</body>
+
+</html>
