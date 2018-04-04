@@ -17,15 +17,15 @@ The purpose of this app is to find a book recommendations from Goodread's API
 
 # User Stories
 * As a user I want to quickly understand the purpose of the site in order to use it to find books.
-![Landing page screen shot](https://github.com/DianeCho/shopping-list-node-capstone/blob/master/github-images/pic1.png)
+![Landing page screen shot](https://github.com/DianeCho/book-search-fullstack-capstone/blob/master/github-images/pic1.png)
 * As a user I want to be able to login so I can return to the site and view saved books to favorites.
-![Landing page screen shot](https://github.com/DianeCho/shopping-list-node-capstone/blob/master/github-images/pic2.png)
+![Landing page screen shot](https://github.com/DianeCho/book-search-fullstack-capstone/blob/master/github-images/pic2.png)
 * As a user I want to search for books and add to their favorites.
-![Landing page screen shot](https://github.com/DianeCho/shopping-list-node-capstone/blob/master/github-images/pic3.png)
+![Landing page screen shot](https://github.com/DianeCho/book-search-fullstack-capstone/blob/master/github-images/pic3.png)
 * As a user I want to select the books added to their favorites and edit by adding or removing books from list.
-![Landing page screen shot](https://github.com/DianeCho/shopping-list-node-capstone/blob/master/github-images/pic4.png)
+![Landing page screen shot](https://github.com/DianeCho/book-search-fullstack-capstone/blob/master/github-images/pic4.png)
 * As a user I want to be able to review books from their list and keep track of books that the user read.
-![Landing page screen shot](https://github.com/DianeCho/shopping-list-node-capstone/blob/master/github-images/pic5.png)
+![Landing page screen shot](https://github.com/DianeCho/book-search-fullstack-capstone/blob/master/github-images/pic5.png)
 
 ## Screenshots
 ![Landing page screen shot](https://github.com/DianeCho/shopping-list-node-capstone/blob/master/github-images/Screenshot1.png)
