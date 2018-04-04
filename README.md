@@ -16,15 +16,15 @@ The purpose of this app is to find a book recommendations from Goodread's API
 * --------> User can add book review to favorites
 
 # User Stories
-* As a user I want to quickly understand the purpose of the site in order to use it to create a shopping list.
+* As a user I want to quickly understand the purpose of the site in order to use it to find books.
 ![Landing page screen shot](https://github.com/DianeCho/shopping-list-node-capstone/blob/master/github-images/pic1.png)
-* As a user I want to be able to login so I can return to the site and view saved recipes to favorites.
+* As a user I want to be able to login so I can return to the site and view saved books to favorites.
 ![Landing page screen shot](https://github.com/DianeCho/shopping-list-node-capstone/blob/master/github-images/pic2.png)
-* As a user I want to search for recipes that I would like to create a shopping list for.
+* As a user I want to search for books and add to their favorites.
 ![Landing page screen shot](https://github.com/DianeCho/shopping-list-node-capstone/blob/master/github-images/pic3.png)
-* As a user I want to select recipes or just recipe that I would liket to create a shopping list for.
+* As a user I want to select the books added to their favorites and edit by adding or removing books from list.
 ![Landing page screen shot](https://github.com/DianeCho/shopping-list-node-capstone/blob/master/github-images/pic4.png)
-* As a user I want to be able to edit my shopping list, save to my favorites so I can revist later or print the list.
+* As a user I want to be able to review books from their list and keep track of books that the user read.
 ![Landing page screen shot](https://github.com/DianeCho/shopping-list-node-capstone/blob/master/github-images/pic5.png)
 
 ## Screenshots
@@ -44,9 +44,10 @@ Find a working prototype with Node at https://book-search-fullstack-capstone.her
 ## Functionality
 * When the user brings up the main page it explains the purpose of the application.
 * The user then enters the app and logs in.  After they are logged in, the user is now redirected to search bar.
-* The user can search for recipes and select the recipes.
-* The user can generate a shopping list and edit the shopping list.
-* The user can print the final shopping list or save to their favorites to revisit at a later time.
+* The user can search for books and select the books.
+* The user can save selected books to the user's list.
+* The user can edit the book's list.
+* The user can review the books in the list.
 
 
 ## Technical
