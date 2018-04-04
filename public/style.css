@@ -6,7 +6,7 @@
 }
 
 body {
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: 'Amatic SC', cursive;
     background: -webkit-linear-gradient(rgba(20, 20, 20, 0.1), rgba(20, 20, 20, 0.8)), -webkit-linear-gradient(rgba(20, 20, 20, 0.3), rgba(20, 20, 20, 0.3)), url("images/background-img.jpg");
     background-position: center center;
     background-attachment: fixed;
@@ -50,7 +50,6 @@ body {
     right: 0;
 }
 */
-
 
 h1,
 h2 {
@@ -116,6 +115,7 @@ input[type=password] {
     text-align: right;
 }
 
+/*
 button {
     background-color: #4CAF50;
     color: white;
@@ -124,6 +124,24 @@ button {
     border: none;
     cursor: pointer;
     width: 100%;
+}
+*/
+
+button {
+    background: #428BCA;
+    color: #fff;
+    font-family: 'Amatic SC', cursive;
+    font-size: 20px;
+    /*
+    height: 60px;
+    width: 150px;
+    line-height: 60px;
+*/
+    padding: 10px 18px;
+    margin: 8px 0;
+    text-align: center;
+    border: none;
+    transition: all 0.3s ease 0s;
 }
 
 #returnbtn,
