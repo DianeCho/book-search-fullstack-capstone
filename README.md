@@ -6,15 +6,14 @@ The purpose of this app is to find a book recommendations from Goodread's API
 * --> Explanation of the application
 * ----> Click to Enter
 * ------> login to page to enter to the site.
-* --------> Search for recipes
-* --------> select recipes.
+* --------> Search for books
+* --------> select books.
 * ----------> Add to favorites to return later.
-* Screen displays shopping list.
-* --> User can edit the shopping list.
+* Screen displays book recommendations.
+* --> User can edit the book list.
 * ----> Click to continue.
-* ------> Final shopping list.
-* --------> User can print the shopping list
-* ----------> User can add shopping list to favorites.
+* ------> Final book list with user review .
+* --------> User can add book review to favorites
 
 # User Stories
 * As a user I want to quickly understand the purpose of the site in order to use it to create a shopping list.
@@ -64,7 +63,7 @@ Find a working prototype with Node at https://book-search-fullstack-capstone.her
 * MongoDB on mLab
 * Mongoose
 * Mocha and Chai
-* Yummly API
+* Goodreads API
 
 #### Responsive
 
