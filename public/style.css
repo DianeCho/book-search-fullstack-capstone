@@ -62,7 +62,7 @@ h2 {
 
 
 .logo {
-    height: 50px;
+    height: 40px;
     margin-right: 1rem;
     border-radius: 23px;
 }
@@ -132,11 +132,6 @@ button {
     color: #fff;
     font-family: 'Amatic SC', cursive;
     font-size: 20px;
-    /*
-    height: 60px;
-    width: 150px;
-    line-height: 60px;
-*/
     padding: 10px 18px;
     margin: 8px 0;
     text-align: center;
@@ -188,6 +183,7 @@ button:hover {
     padding: 16px;
     text-align: left;
 }
+
 
 .newuser-box button1 {
     padding: 16px;

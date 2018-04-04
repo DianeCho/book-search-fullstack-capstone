@@ -1,11 +1,12 @@
 //import external resources
 const express = require('express');
 const morgan = require('morgan');
-var unirest = require('unirest');
-var events = require('events');
+const unirest = require('unirest');
+const events = require('events');
+const SimpleGoodreads = require('simple-goodreads');
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
-var config = require('./config');
+const config = require('./config');
 const bodyParser = require('body-parser');
 
 
@@ -95,6 +96,38 @@ var getSingleFromYum = function (recipeId) {
     return emitter;
 };
 
+
+//external api call to goodreads (search by title)
+//testing url http://localhost:5001/book-search-title/shogun
+app.get('/book-search-title/:titleName', function (req, res) {
+    console.log(req.params.titleName);
+    var goodreads = new SimpleGoodreads();
+    goodreads.searchBook(req.params.titleName, function (err, book) {
+        // book is retrieved
+        console.log(book.id); // 3
+        console.log(book.title); // Harry Potter and the Sorcerer\'s Stone (Harry Potter, #1)
+        console.log(book.author); // J.K. Rowling
+        console.log(book.publication_year); // 1997
+        console.log(book.rating); // 4.40
+    });
+});
+
+//external api call to goodreads (search by author)
+//testing url http://localhost:5001/book-search-author/george
+app.get('/book-search-author/:authorName', function (req, res) {
+    console.log(req.params.authorName);
+    var goodreads = new SimpleGoodreads();
+    goodreads.authorInfo(req.params.authorName, function (err, author) {
+        // author is retrieved
+        console.log(author.id); // 3706
+        console.log(author.name); // George Orwell
+        console.log(author.link); // https://www.goodreads.com/author/show/3706.George_Orwell
+        console.log(author.gender); // male
+        console.log(author.hometown); // Motihari, Bihar
+        console.log(author.born_at); // 1903/06/25
+        console.log(author.died_at); // 1950/01/21
+    })
+});
 
 
 //local api endpoints
@@ -256,6 +289,7 @@ function storeIngredient(shortList, qtyList) {
         found = 0;
     }
 }
+
 
 
 
