@@ -343,13 +343,32 @@ app.get('/retrieve-recipes/', function (req, res) {
 
 
 
+////search recipes by name api endpoint
+//app.get('/search-recipes/:name', (req, res) => {
+//    //console.log(req);
+//    //    external api function call and response
+//
+//    var searchReq = getRecepiesFromYum(req.params.name);
+//
+//    //get the data from the first api call
+//    searchReq.on('end', function (item) {
+//        res.json(item);
+//    });
+//
+//    //error handling
+//    searchReq.on('error', function (code) {
+//        res.sendStatus(code);
+//    });
+//
+//});
 
-//search recipes by name api endpoint
-app.get('/search-recipes/:name', (req, res) => {
+
+//search book by title api endpoint
+app.get('/book-search-title/:titleName', (req, res) => {
     //console.log(req);
     //    external api function call and response
 
-    var searchReq = getRecepiesFromYum(req.params.name);
+    var searchReq = getBooksFromGood(req.params.titleName);
 
     //get the data from the first api call
     searchReq.on('end', function (item) {
@@ -363,17 +382,40 @@ app.get('/search-recipes/:name', (req, res) => {
 
 });
 
-
 //search recipes by ID api endpoint
-app.get('/get-recipe/:id', (req, res) => {
+//app.get('/get-recipe/:id', (req, res) => {
+//
+//    //console.log(req.params.id);
+//    //    external api function call and response
+//
+//    var aRecipe = getSingleFromYum(req.params.id);
+//
+//    //get the data from the first api call
+//    aRecipe.on('end', function (item) {
+//        res.json(item);
+//
+//        //????
+//        //        res.json(item.ingredientLines[0]);
+//    });
+//
+//    //error handling
+//    aRecipe.on('error', function (code) {
+//        res.sendStatus(code);
+//    });
+//
+//});
+
+
+//search books by ID api endpoint
+app.get('/book-search/:id', (req, res) => {
 
     //console.log(req.params.id);
     //    external api function call and response
 
-    var aRecipe = getSingleFromYum(req.params.id);
+    var aBook = getSingleFromGood(req.params.id);
 
     //get the data from the first api call
-    aRecipe.on('end', function (item) {
+    aBook.on('end', function (item) {
         res.json(item);
 
         //????
@@ -381,7 +423,7 @@ app.get('/get-recipe/:id', (req, res) => {
     });
 
     //error handling
-    aRecipe.on('error', function (code) {
+    aBook.on('error', function (code) {
         res.sendStatus(code);
     });
 
@@ -469,9 +511,9 @@ app.get('/retrieve-sList/', function (req, res) {
 
 
 //delete ingredient api endpoint by id
-app.delete('/delete/:ingredientId', function (req, res) {
+app.delete('/delete/:bookId', function (req, res) {
     //console.log(req.params.id);
-    list.findByIdAndRemove(req.params.ingredientId, function (err, items) {
+    list.findByIdAndRemove(req.params.bookId, function (err, items) {
         if (err)
             return res.status(404).json({
                 message: 'Item not found.'
@@ -482,23 +524,23 @@ app.delete('/delete/:ingredientId', function (req, res) {
 });
 
 //delete ingredients wihtout quantity api endpoint
-app.delete('/delete-empty-ingredients/', function (req, res) {
-    //find ingredients without the "qty" field and remove them
-    list
-        .find({
-            qty: {
-                $exists: false
-            }
-        }).remove().exec().then(function (items) {
-            return res.status(204).json({
-                message: 'removed'
-            }).end();
-        }).catch(function (err) {
-            return res.status(500).json({
-                message: 'Internal Server Error'
-            });
-        });
-});
+//app.delete('/delete-empty-ingredients/', function (req, res) {
+//    //find ingredients without the "qty" field and remove them
+//    list
+//        .find({
+//            qty: {
+//                $exists: false
+//            }
+//        }).remove().exec().then(function (items) {
+//            return res.status(204).json({
+//                message: 'removed'
+//            }).end();
+//        }).catch(function (err) {
+//            return res.status(500).json({
+//                message: 'Internal Server Error'
+//            });
+//        });
+//});
 
 
 
