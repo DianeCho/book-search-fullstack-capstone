@@ -41,10 +41,10 @@
             <h2><img src="images/logo.jpeg" class="logo" alt="">Login Form</h2>
             <div class="container">
                 <label for="uname"><b>Username</b></label>
-                <input type="text" id="sign-in-username" placeholder="Enter Username" name="uname" value="demo@domain.com" required>
+                <input type="text" id="sign-in-username" placeholder="Enter Username" name="uname" value="dicho@domain.com" required>
 
                 <label for="psw"><b>Password</b></label>
-                <input type="password" id="sign-in-password" placeholder="Enter Password" name="psw" value="demo" required>
+                <input type="password" id="sign-in-password" placeholder="Enter Password" name="psw" value="123" required>
                 <button type="submit" class="login">Login</button>
             </div>
 
@@ -122,72 +122,79 @@
         <form action="#" class="js-search-form">
             <h2><img src="images/logo.jpeg" class="logo" alt="">Search Books</h2>
             <div class="container">
-                <label for="query"></label>
-                <input value="" type="text" class="js-query" placeholder="Find Adventures Here!">
-                <input value="" type="hidden" class="js-query-username" value="">
-                <button type="submit" id="findIt" class="searchbtn">Search</button>
+                <div class="searchColumn">
+                    <label for="query"></label>
+                    <input value="Harry Potter" type="text" class="js-query" placeholder="Find Adventures Here!">
+                    <input value="" type="hidden" class="js-query-username" value="">
+                </div>
+                <div class="searchColumn searchWrapper">
+                    <button type="submit" id="findIt" class="searchbtn">Search</button>
+                </div>
             </div>
         </form>
     </main>
 
     <!--list of recipes-->
-    <main class="js-ingredients-page">
+    <main class="js-books-page">
         <!--    <form action="#" class="js-ingredients-form">-->
-        <h2><img src="images/logo.jpeg" class="logo" alt="">Recipes</h2>
+        <h2><img src="images/logo.jpeg" class="logo" alt="">Books</h2>
         <div class="container-box">
-            <ul class="yummly-search-results">
-                <!--
-<li>
-    <div class="recipetitle">
-        <label for="title">Title of Recipes</label>
-    </div>
-    <img src="images/recipe.jpg" class="recipe" alt="">
-    <div class="recipes">
-        <ul class="recipeslist">
-            <li>instructions</li>
-            <li>instructions</li>
-            <li>instructions</li>
-        </ul>
-    </div>
-    <button type="button" class="addbtn">Add to list</button>
-</li>
+            <ul class="goodreads-search-results">
 
-<li>
-    <div class="recipetitle">
-        <label for="title">Title of Recipes</label>
-    </div><img src="images/recipe.jpg" class="recipe" alt="">
-    <div class="recipes">
-        <ul class="recipeslist">
-            <li>instructions</li>
-            <li>instructions</li>
-            <li>instructions</li>
-        </ul>
-    </div>
-    <button type="button" class="addbtn">Add to list</button></li>
-<li>
-    <div class="recipetitle">
-        <label for="title">Title of Recipes</label>
-    </div><img src="images/recipe.jpg" class="recipe" alt="">
-    <div class="recipes">
-        <ul class="recipeslist">
-            <li>instructions</li>
-            <li>instructions</li>
-            <li>instructions</li>
-        </ul>
-    </div>
-    <button type="button" class="addbtn">Add to list</button></li>
-<li>
-    <div class="recipetitle">
-        <label for="title">Title of Recipes</label>
-    </div><img src="images/recipe.jpg" class="recipe" alt="">
-    <div class="recipes">
-        <ul class="recipeslist">
-            <li>instructions</li>
-            <li>instructions</li>
-            <li>instructions</li>
-        </ul>
-    </div>
-    <button type="button" class="addbtn">Add to list</button></li>-->
+                <li>
+                    <div class="booktitle">
+                        <label for="title">Book Title</label>
+                    </div>
+                    <img src="images/recipe.jpg" class="recipe" alt="">
+                    <div class="books">
+                        <ul class="bookslist">
+                            <li>author</li>
+                        </ul>
+                    </div>
+                    <button type="button" class="addbtn">Add to list</button>
+                </li>
+
+                <li>
+                    <div class="booktitle">
+                        <label for="title">Book Title</label>
+                    </div>
+                    <img src="images/recipe.jpg" class="recipe" alt="">
+                    <div class="books">
+                        <ul class="bookslist">
+                            <li>author</li>
+
+                        </ul>
+                    </div>
+                    <button type="button" class="addbtn">Add to list</button>
+                </li>
+
+                <li>
+                    <div class="booktitle">
+                        <label for="title">Book Title</label>
+                    </div>
+                    <img src="images/recipe.jpg" class="recipe" alt="">
+                    <div class="books">
+                        <ul class="bookslist">
+                            <li>author</li>
+
+                        </ul>
+                    </div>
+                    <button type="button" class="addbtn">Add to list</button>
+                </li>
+
+                <li>
+                    <div class="booktitle">
+                        <label for="title">Book Title</label>
+                    </div>
+                    <img src="images/recipe.jpg" class="recipe" alt="">
+                    <div class="books">
+                        <ul class="bookslist">
+                            <li>author</li>
+
+                        </ul>
+                    </div>
+                    <button type="button" class="addbtn">Add to list</button>
+                </li>
 
             </ul>
             <div class="container continueBtnWrapper">
@@ -201,85 +208,93 @@
 
 
 
-    <!--   shopping list of ingredients-->
-    <main class="js-shoppinglist-page">
+    <!--   Booklist review-->
+    <main class="js-booklist-page">
         <!--    <form action="#" class="js-shoppinglist-form">-->
-        <h2><img src="images/logo.jpeg" class="logo" alt="">Books</h2>
+        <h2><img src="images/logo.jpeg" class="logo" alt="">Book Review</h2>
         <div class="container">
             <ul>
-                <!--
+
                 <li>
-                    <div class="ingredients-box">
-                        <label for="ingredients">ingredients</label>
-                        <ul class="ingredientslist">
-                            <li>ingredients</li>
-                            <li>ingredients</li>
-                            <li>ingredients</li>
+                    <div class="book-box">
+                        <label for="book">Book Review</label>
+                        <img src="images/recipe.jpg" class="books" alt="">
+                        <ul class="bookreviewlist">
+                            <textarea class="reviewbookbox" rows="4" cols="50">
+                                orem Ipsum is simply dummy text of the printing and
+                                typesetwn pro the leap in, remainined.
+                                It was popularised in the 1960s
+                                with the release of Letraset sheets containing Lo
+                            </textarea>
                         </ul>
-                        <button type="button" class="deletebtn">Delete</button>
+                        <button type="button" class="reviewbtn">Review</button>
+                        <button type="button" class="savebtn">Save</button>
                     </div>
                 </li>
                 <li>
-                    <div class="ingredients-box">
-                        <label for="ingredients">ingredients</label>
-                        <ul class="ingredientslist">
-                            <li>ingredients</li>
-                            <li>ingredients</li>
-                            <li>ingredients</li>
+                    <div class="book-box">
+                        <label for="book">Book Review</label>
+                        <img src="images/recipe.jpg" class="books" alt="">
+                        <ul class="bookreviewlist">
+                            <textarea class="reviewbookbox" rows="4" cols="50">
+                                orem Ipsum is simply dummy text of the printing and
+                                typesetwn pro the leap in, remainined.
+                                It was popularised in the 1960s
+                                with the release of Letraset sheets containing Lo
+                            </textarea>
                         </ul>
-                        <button type="button" class="deletebtn">Delete</button></div>
+                        <button type="button" class="reviewbtn">Review</button>
+                        <button type="button" class="savebtn">Save</button>
+                    </div>
                 </li>
                 <li>
-                    <div class="ingredients-box">
-                        <label for="ingredients">ingredients</label>
-                        <ul class="ingredientslist">
-                            <li>ingredients</li>
-                            <li>ingredients</li>
-                            <li>ingredients</li>
+                    <div class="book-box">
+                        <label for="book">Book Review</label>
+                        <img src="images/recipe.jpg" class="books" alt="">
+                        <ul class="bookreviewlist">
+                            <textarea class="reviewbookbox" rows="4" cols="50">
+                                orem Ipsum is simply dummy text of the printing and
+                                typesetwn pro the leap in, remainined.
+                                It was popularised in the 1960s
+                                with the release of Letraset sheets containing Lo
+                            </textarea>
                         </ul>
-                        <button type="button" class="deletebtn">Delete</button></div>
+                        <button type="button" class="reviewbtn">Review</button>
+                        <button type="button" class="savebtn">Save</button>
+                    </div>
                 </li>
                 <li>
-                    <div class="ingredients-box">
-                        <label for="ingredients">ingredients</label>
-                        <ul class="ingredientslist">
-                            <li>ingredients</li>
-                            <li>ingredients</li>
-                            <li>ingredients</li>
+                    <div class="book-box">
+                        <label for="book">Book Review</label>
+                        <img src="images/recipe.jpg" class="books" alt="">
+                        <ul class="bookreviewlist">
+                            <textarea class="reviewbookbox" rows="4" cols="50">
+                                orem Ipsum is simply dummy text of the printing and
+                                typesetwn pro the leap in, remainined.
+                                It was popularised in the 1960s
+                                with the release of Letraset sheets containing Lo
+                            </textarea>
                         </ul>
-                        <button type="button" class="deletebtn">Delete</button> </div>
+                        <button type="button" class="reviewbtn">Review</button>
+                        <button type="button" class="savebtn">Save</button>
+                    </div>
                 </li>
-                <li>
-                    <div class="ingredients-box">
-                        <label for="ingredients">ingredients</label>
-                        <ul class="ingredientslist">
-                            <li>ingredients</li>
-                            <li>ingredients</li>
-                            <li>ingredients</li>
-                        </ul>
-                        <button type="button" class="deletebtn">Delete</button></div>
-                </li>
-                <li>
-                    <div class="ingredients-box">
-                        <label for="ingredients">ingredients</label>
-                        <ul class="ingredientslist">
-                            <li>ingredients</li>
-                            <li>ingredients</li>
-                            <li>ingredients</li>
-                        </ul>
-                        <button type="button" class="deletebtn">Delete</button></div>
-                </li>
--->
+
+
             </ul>
+
             <div class="container" id="optionbox">
                 <label for="query"></label>
-                <input value="" type="text" class="js-query-ingredient-name" placeholder="Add Ingredient">
-                <input value="" type="text" class="js-query-ingredient-qty" placeholder="Ingredient Quantity">
-                <button type="button" class='optionbutton1' id="addbutton">Add More Ingredients</button>
-                <button type="button" class='optionbutton1' id="print">Print</button>
+                <!--
+    <input value="" type="text" class="js-query-ingredient-name" placeholder="Add Ingredient">
+    <input value="" type="text" class="js-query-ingredient-qty" placeholder="Ingredient Quantity">
+    <button type="button" class='optionbutton1' id="addbutton">Add More Ingredients</button>
+    <button type="button" class='optionbutton1' id="print">Print</button>
+-->
                 <button type="button" class='optionbutton1' id="returnbtn">Return to Search</button>
                 <button type="button" class='optionbutton1' id="returnmain">Return to Main Page</button>
             </div>
+
 
 
         </div>

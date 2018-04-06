@@ -132,11 +132,20 @@ button {
     color: #fff;
     font-family: 'Amatic SC', cursive;
     font-size: 20px;
-    padding: 10px 18px;
-    margin: 8px 0;
+    padding: 4px 18px 9px;
+    /*    margin: 8px 0;*/
     text-align: center;
     border: none;
     transition: all 0.3s ease 0s;
+}
+
+.searchColumn {
+    display: inline-block;
+    width: 69%;
+}
+
+.searchWrapper {
+    width: 30%;
 }
 
 #returnbtn,
@@ -157,7 +166,6 @@ button:hover {
 }
 
 .cancelbtn,
-.deletebtn,
 .addbtn {
     width: auto;
     padding: 10px 18px;
@@ -208,7 +216,7 @@ span.newuser {
 }
 
 
-.js-shoppinglist-page li {
+.js-booklist-page li {
     border-top: 1px solid white;
     width: 47%;
     display: inline-block;
@@ -219,7 +227,7 @@ span.newuser {
     vertical-align: top;
 }
 
-.yummly-search-results img {
+.goodreads-search-results img {
     margin-top: 40px;
     display: block;
     width: 100%;
@@ -234,7 +242,7 @@ span.newuser {
 }
 
 
-.yummly-search-results li {
+.goodreads-search-results li {
     width: 47%;
     display: inline-block;
     margin-left: 2%;
@@ -245,13 +253,13 @@ span.newuser {
 }
 
 
-.recipeslist li,
+.bookslist li,
 .ingredientslist li {
     margin: 4px;
     border: none;
 }
 
-.recipeslist li {
+.bookslist li {
     display: block;
     margin: 10px;
     /* margin-left: 25%; */
@@ -266,20 +274,23 @@ span.newuser {
     background: linear-gradient(to right, rgba(20, 20, 20, 0.08), rgb(20, 20, 20));
 }
 
-.ingredientslist li {
+.bookreviewlist li {
     text-align: center;
     display: block;
     width: 100%;
 }
 
+.reviewbookbox {
+    width: 25%;
+}
 
-.recipetitle {
+.booktitle {
     text-align: center;
     font-size: 20px;
     margin-top: 1rem;
 }
 
-.recipetitle label {
+.booktitle label {
     height: 54px;
     overflow-x: auto;
     display: block;
@@ -299,7 +310,7 @@ label {
     margin-bottom: 5rem;
 }
 
-.ingredients-box {
+.book-box {
     text-align: center;
     padding: 5px 10px;
     width: 100%;
@@ -308,8 +319,12 @@ label {
 
 
 
-
-
+.books {
+    height: 60px;
+    width: 80px;
+    display: block;
+    margin-left: 38%;
+}
 
 footer {
     text-align: center;

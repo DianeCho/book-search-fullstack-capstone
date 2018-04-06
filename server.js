@@ -51,50 +51,50 @@ if (require.main === module) {
 
 
 // external api function, connect to yummly api
-var getRecepiesFromYum = function (searchTerm) {
-    var emitter = new events.EventEmitter();
-    //console.log("inside getFromActive function");
-    unirest.get("http://api.yummly.com/v1/api/recipes?_app_id=35372e2c&_app_key=971c769d4bab882dc3281f0dc6131324&q=" + searchTerm + '&maxResult=12')
-        .header("Accept", "application/json")
-        .end(function (result) {
-            // //console.log(result.status, result.headers, result.body);
-            //success scenario
-            if (result.ok) {
-                emitter.emit('end', result.body);
-            }
-            //failure scenario
-            else {
-                emitter.emit('error', result.code);
-            }
-        });
-
-    return emitter;
-};
+//var getRecepiesFromYum = function (searchTerm) {
+//    var emitter = new events.EventEmitter();
+//    //console.log("inside getFromActive function");
+//    unirest.get("http://api.yummly.com/v1/api/recipes?_app_id=35372e2c&_app_key=971c769d4bab882dc3281f0dc6131324&q=" + searchTerm + '&maxResult=12')
+//        .header("Accept", "application/json")
+//        .end(function (result) {
+//            // //console.log(result.status, result.headers, result.body);
+//            //success scenario
+//            if (result.ok) {
+//                emitter.emit('end', result.body);
+//            }
+//            //failure scenario
+//            else {
+//                emitter.emit('error', result.code);
+//            }
+//        });
+//
+//    return emitter;
+//};
 
 
 
 //get single recipes from yummly
-var getSingleFromYum = function (recipeId) {
-    console.log(recipeId);
-    var emitter = new events.EventEmitter();
-    //console.log("inside getFromActive function");
-    //console.log("http://api.yummly.com/v1/api/recipe/" + recipeId + "?_app_id=35372e2c&_app_key=971c769d4bab882dc3281f0dc6131324");
-    unirest.get("http://api.yummly.com/v1/api/recipe/" + recipeId + "?_app_id=35372e2c&_app_key=971c769d4bab882dc3281f0dc6131324")
-        .header("Accept", "application/json")
-        .end(function (result) {
-            //console.log(result.status, result.headers, result.body);
-            //success scenario
-            if (result.ok) {
-                emitter.emit('end', result.body);
-            }
-            //failure scenario
-            else {
-                emitter.emit('error', result.code);
-            }
-        });
-
-    return emitter;
-};
+//var getSingleFromYum = function (recipeId) {
+//    console.log(recipeId);
+//    var emitter = new events.EventEmitter();
+//    //console.log("inside getFromActive function");
+//    //console.log("http://api.yummly.com/v1/api/recipe/" + recipeId + "?_app_id=35372e2c&_app_key=971c769d4bab882dc3281f0dc6131324");
+//    unirest.get("http://api.yummly.com/v1/api/recipe/" + recipeId + "?_app_id=35372e2c&_app_key=971c769d4bab882dc3281f0dc6131324")
+//        .header("Accept", "application/json")
+//        .end(function (result) {
+//            //console.log(result.status, result.headers, result.body);
+//            //success scenario
+//            if (result.ok) {
+//                emitter.emit('end', result.body);
+//            }
+//            //failure scenario
+//            else {
+//                emitter.emit('error', result.code);
+//            }
+//        });
+//
+//    return emitter;
+//};
 
 
 //external api call to goodreads (search by title)
@@ -109,8 +109,17 @@ app.get('/book-search-title/:titleName', function (req, res) {
         console.log(book.author); // J.K. Rowling
         console.log(book.publication_year); // 1997
         console.log(book.rating); // 4.40
+        if (err) {
+            return res.status(500).json({
+                message: 'Internal Server Error'
+            });
+        }
+        if (book) {
+            return res.json(book);
+        }
     });
 });
+
 
 //external api call to goodreads (search by author)
 //testing url http://localhost:5001/book-search-author/george
@@ -126,6 +135,14 @@ app.get('/book-search-author/:authorName', function (req, res) {
         console.log(author.hometown); // Motihari, Bihar
         console.log(author.born_at); // 1903/06/25
         console.log(author.died_at); // 1950/01/21
+        if (err) {
+            return res.status(500).json({
+                message: 'Internal Server Error'
+            });
+        }
+        if (author) {
+            return res.json(author);
+        }
     })
 });
 
@@ -252,43 +269,43 @@ app.post('/users/signin', function (req, res) {
 //If so it adds the qty to the shortlist qty.
 //if its not present, it adds the shortlist item and qty to shopping list.
 
-function storeIngredient(shortList, qtyList) {
-
-    //looping through qtylist array
-    for (let x = 0; x < qtyList.length; x++) {
-        if (shortList[x] !== undefined) {
-            let shortListLower = shortList[x].toLowerCase();
-        }
-        //        let listCounter = 0;
-        let found = 0;
-
-
-        //loops through qtylist array in order to match to short list array
-        for (let listCounter = 0; listCounter < qtyList.length; listCounter++) {
-            if (found < 1) {
-                let qtylistLower = qtyList[x].toLowerCase();
-
-                //if no match do nothing
-                if ((shortList[x] == '') && (qtyList[x] == '') && (shortList[x] == undefined) && (qtyList[x] == undefined)) {
-                    //console.log("inside if -->", listCounter);
-                }
-
-                //if there is match...
-                else {
-
-                    //add match to db
-                    list.create({
-                        ingredient: shortList[x],
-                        qty: qtyList[x]
-
-                    });
-                    found = 1;
-                }
-            }
-        }
-        found = 0;
-    }
-}
+//function storeIngredient(shortList, qtyList) {
+//
+//    //looping through qtylist array
+//    for (let x = 0; x < qtyList.length; x++) {
+//        if (shortList[x] !== undefined) {
+//            let shortListLower = shortList[x].toLowerCase();
+//        }
+//        //        let listCounter = 0;
+//        let found = 0;
+//
+//
+//        //loops through qtylist array in order to match to short list array
+//        for (let listCounter = 0; listCounter < qtyList.length; listCounter++) {
+//            if (found < 1) {
+//                let qtylistLower = qtyList[x].toLowerCase();
+//
+//                //if no match do nothing
+//                if ((shortList[x] == '') && (qtyList[x] == '') && (shortList[x] == undefined) && (qtyList[x] == undefined)) {
+//                    //console.log("inside if -->", listCounter);
+//                }
+//
+//                //if there is match...
+//                else {
+//
+//                    //add match to db
+//                    list.create({
+//                        ingredient: shortList[x],
+//                        qty: qtyList[x]
+//
+//                    });
+//                    found = 1;
+//                }
+//            }
+//        }
+//        found = 0;
+//    }
+//}
 
 
 
@@ -390,64 +407,64 @@ app.get('/retrieve-sList/', function (req, res) {
 
 
 //add recipe api endpoint to db
-app.post('/add-recipe-db/', function (req, res) {
+//app.post('/add-recipe-db/', function (req, res) {
+//
+//
+//    let aRecipe = getSingleFromYum(req.body.id);
+//    //    //console.log(aRecipe);
+//
+//    //get the data from the first api call
+//    aRecipe.on('end', function (item) {
+//        //        //console.log(req.body.shortList.split(","));
+//        //        //console.log(item.ingredientLines);
+//
+//
+//        storeIngredient(req.body.shortList.split(","), item.ingredientLines);
+//        //console.log(item.ingredientLines);
+//        //db connection and data queries
+//        recipe.create({
+//            name: req.body.name,
+//            rating: req.body.rating,
+//            course: req.body.course,
+//            id: req.body.id,
+//            day: req.body.day,
+//            shortList: req.body.shortList,
+//            username: req.body.username,
+//            ingredients: JSON.stringify(item.ingredientLines)
+//
+//        }, function (err, item) {
+//            if (err) {
+//                return res.status(500).json({
+//                    message: 'Internal Server Error'
+//                });
+//            }
+//            res.status(201).json(item);
+//        });
+//
+//        list.create({
+//            ingredients: JSON.stringify(item.ingredientLines)
+//
+//        }, function (err, item) {
+//            if (err) {
+//                return res.status(500).json({
+//                    message: 'Internal Server Error'
+//                });
+//            }
+//            //            res.status(201).json(item);
+//        });
 
 
-    let aRecipe = getSingleFromYum(req.body.id);
-    //    //console.log(aRecipe);
-
-    //get the data from the first api call
-    aRecipe.on('end', function (item) {
-        //        //console.log(req.body.shortList.split(","));
-        //        //console.log(item.ingredientLines);
-
-
-        storeIngredient(req.body.shortList.split(","), item.ingredientLines);
-        //console.log(item.ingredientLines);
-        //db connection and data queries
-        recipe.create({
-            name: req.body.name,
-            rating: req.body.rating,
-            course: req.body.course,
-            id: req.body.id,
-            day: req.body.day,
-            shortList: req.body.shortList,
-            username: req.body.username,
-            ingredients: JSON.stringify(item.ingredientLines)
-
-        }, function (err, item) {
-            if (err) {
-                return res.status(500).json({
-                    message: 'Internal Server Error'
-                });
-            }
-            res.status(201).json(item);
-        });
-
-        list.create({
-            ingredients: JSON.stringify(item.ingredientLines)
-
-        }, function (err, item) {
-            if (err) {
-                return res.status(500).json({
-                    message: 'Internal Server Error'
-                });
-            }
-            //            res.status(201).json(item);
-        });
-
-
-        //res.json(item);
-    });
-
-    //error handling
-    aRecipe.on('error', function (code) {
-        console.log('getSingleFromYum from api not working');
-        res.sendStatus(code);
-    });
-
-
-});
+//res.json(item);
+//    });
+//
+//    //error handling
+//    aRecipe.on('error', function (code) {
+//        console.log('getSingleFromYum from api not working');
+//        res.sendStatus(code);
+//    });
+//
+//
+//});
 
 
 
