@@ -2,6 +2,16 @@ var mongoose = require('mongoose');
 
 var recipeSchema = new mongoose.Schema({
 
+    //            author: {
+    //                type: String,
+    //                required: false
+    //            },
+    //
+    //            title: {
+    //                type: String,
+    //                required: false
+    //            });
+
     name: {
         type: String,
         required: false
@@ -35,7 +45,6 @@ var recipeSchema = new mongoose.Schema({
         required: false
     }
 });
-
 var recipe = mongoose.model('recipe', recipeSchema);
 
 module.exports = recipe;

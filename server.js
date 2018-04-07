@@ -96,7 +96,6 @@ if (require.main === module) {
 //    return emitter;
 //};
 
-
 //external api call to goodreads (search by title)
 //testing url http://localhost:5001/book-search-title/shogun
 app.get('/book-search-title/:titleName', function (req, res) {
@@ -406,28 +405,28 @@ app.get('/book-search-title/:titleName', (req, res) => {
 //});
 
 
-//search books by ID api endpoint
-app.get('/book-search/:id', (req, res) => {
-
-    //console.log(req.params.id);
-    //    external api function call and response
-
-    var aBook = getSingleFromGood(req.params.id);
-
-    //get the data from the first api call
-    aBook.on('end', function (item) {
-        res.json(item);
-
-        //????
-        //        res.json(item.ingredientLines[0]);
-    });
-
-    //error handling
-    aBook.on('error', function (code) {
-        res.sendStatus(code);
-    });
-
-});
+////search books by ID api endpoint
+//app.get('/book-search/:id', (req, res) => {
+//
+//    //console.log(req.params.id);
+//    //    external api function call and response
+//
+//    var aBook = getSingleFromGood(req.params.id);
+//
+//    //get the data from the first api call
+//    aBook.on('end', function (item) {
+//        res.json(item);
+//
+//        //????
+//        //        res.json(item.ingredientLines[0]);
+//    });
+//
+//    //error handling
+//    aBook.on('error', function (code) {
+//        res.sendStatus(code);
+//    });
+//
+//});
 
 
 //get shortlist api endpoint
@@ -511,7 +510,7 @@ app.get('/retrieve-sList/', function (req, res) {
 
 
 //delete ingredient api endpoint by id
-app.delete('/delete/:bookId', function (req, res) {
+app.delete('/delete/', function (req, res) {
     //console.log(req.params.id);
     list.findByIdAndRemove(req.params.bookId, function (err, items) {
         if (err)

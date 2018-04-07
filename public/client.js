@@ -1,72 +1,31 @@
 let loggedInUser = undefined;
 
 
-//function buildBookList(dataOutput, username) {
-//    //builds recipe html for user selection
-//    //console.log(dataOutput);
-//    var buildHtml = '';
-//
-//    $.each(dataOutput.matches,
-//        function (key, value) {
-//
-//            //ours
-//            buildHtml += '<li>';
-//            buildHtml += '<div class="booktitle">';
-//            buildHtml += '<label for="title">' + book.title + '</label>';
-//            buildHtml += '<a href="https://www.goodreads.com/book-search-title/:titleName ' + value.id + '" target="_blank" alt="Link to Goodreads" title="Link to Goodreads">';
-//            buildHtml += '<i class="fa fa-info-circle" aria-hidden="true"></i>';
-//            buildHtml += '</a>';
-//            buildHtml += '</div>';
-//            buildHtml += '<img src="' + book.image_url[0] + '" class="book" alt="">';
-//            buildHtml += '<div class="books">';
-//            buildHtml += '<ul class="bookslist">';
-//            buildHtml += '<li class="author">';
-//            buildHtml += 'Author: ' + book.author;
-//            buildHtml += '</li>';
-//            buildHtml += '<li class="rating">';
-//            buildHtml += 'Rating: ' + book.rating;
-//            buildHtml += '</li>';
-//            buildHtml += '<li class="title">';
-//            buildHtml += 'Ingredients:';
-//            buildHtml += '</li>';
-//            buildHtml += '<li>';
-//
-//
-//            buildHtml += '<ol class="ingredientBox">';
-//            let shortList = "";
-//            $.each(value.ingredients, function (subkey, subvalue) {
-//
-//                buildHtml += '<li class="ingredientlistfromrecipe">';
-//                buildHtml += subvalue;
-//                buildHtml += '</li>';
-//
-//                shortList += subvalue + ",";
-//
-//            });
-//            buildHtml += '</ol>'
-//
-//            buildHtml += '</li>';
-//            buildHtml += '<li>';
-//            buildHtml += "<form class='storeToDb'>";
-//            buildHtml += "<input type='hidden' class='storeToDbName' value='" + value.recipeName + "'>";
-//            buildHtml += "<input type='hidden' class='storeToDbRating' value='" + value.rating + "'>";
-//            buildHtml += "<input type='hidden' class='storeToDbCourse' value='" + value.attributes.course + "'>";
-//            buildHtml += "<input type='hidden' class='storeToDbId' value='" + value.id + "'>";
-//            buildHtml += "<input type='hidden' class='storeToShortList' value='" + shortList + "'>";
-//            buildHtml += "<input type='hidden' class='storeToUserName' value='" + username + "'>";
-//            buildHtml += '<button type="button" class="addbtn">Add to list</button>';
-//            buildHtml += "</form>";
-//
-//            buildHtml += '</li>';
-//            buildHtml += '</ul>';
-//            buildHtml += '</div>';
-//
-//            buildHtml += '</li>';
-//            //    console.log(buildHtml);
-//        });
-//    $('.goodreads-search-results').html(buildHtml);
-//
-//};
+function buildBookList(dataOutput, username) {
+    //builds recipe html for user selection
+    console.log(dataOutput);
+    var buildHtml = '';
+
+    //    $.each(dataOutput.matches,
+    //        function (key, value) {
+
+    buildHtml += '<li>';
+    buildHtml += '<div class="booktitle">';
+    buildHtml += '<label for="title">' + dataOutput.title + '</label>';
+    buildHtml += '</div>';
+    buildHtml += '<img src="' + dataOutput.image_url + '" class="recipe" alt="">';
+    buildHtml += '<div class="books">';
+    buildHtml += '<ul class="bookslist">';
+    buildHtml += '<li>' + dataOutput.author + '</li>';
+    buildHtml += '</ul>';
+    buildHtml += '</div>';
+    buildHtml += '<button type="button" class="addbtn">Add to list</button>';
+    buildHtml += '</li>';
+    //        });
+    $('.goodreads-search-results').html(buildHtml);
+
+};
+
 
 $(document).ready(function () {
     //    when the page loads
@@ -191,6 +150,7 @@ $(document).on('click', '.searchbtn', function (event) {
 
     let searchString = $('.js-query').val();
     let searchUserName = $('.js-query-username').val();
+    console.log(searchString, searchUserName);
 
     if ((!searchString) || (searchString.length < 1)) {
         displayError('Invalid search string');
@@ -202,7 +162,7 @@ $(document).on('click', '.searchbtn', function (event) {
                 dataType: 'json',
             })
             .done(function (dataOutput) {
-                console.log(dataOutput);
+                //                console.log(dataOutput);
                 buildBookList(dataOutput, searchUserName);
 
             })
@@ -218,7 +178,7 @@ $(document).on('click', '.searchbtn', function (event) {
 });
 
 
-function buildBookReviewList(result) {
+function buildShoppingList(result) {
     //builds ingredient list for ingredients page
     console.log(result);
     let aggregateList = [];
@@ -297,7 +257,7 @@ $(document).on('click', '.continuebtn', function (event) {
 });
 
 
-$(document).on('click', '.savebtn', function (event) {
+$(document).on('submit', '.savebtn', function (event) {
     event.preventDefault();
 
     $.ajax({
@@ -395,7 +355,7 @@ $(document).on('click', '.deletebtn', function (event) {
         });
 });
 
-function addToList(title, id, author) {
+function addToList(title, author) {
     //Populates Menu section of Search.html
     var buildMenuHtml = '';
     //buildMenuHtml += '<li><h3>' + $('#recipeDay').val() + '</h3></li>';
@@ -410,7 +370,8 @@ function addToList(title, id, author) {
 $(document).on('click', '.addbtn', function (event) {
     //Stores a recipe selected to Mongo.
     event.preventDefault();
-    console.log('add recipes to list');
+    console.log('add books to list');
+
     var recipeNameValue = $(this).parent().find('.storeToDbName').val();
     var recipeRatingValue = $(this).parent().find('.storeToDbRating').val();
     var recipeCourseValue = $(this).parent().find('.storeToDbCourse').val();
@@ -419,6 +380,8 @@ $(document).on('click', '.addbtn', function (event) {
     var recipeDayValue = $('#recipeDay').val();
     var recipeStoreToShortList = $(this).parent().find('.storeToShortList').val();
     var recipeUserName = $(this).parent().find('.storeToUserName').val();
+
+
 
     var recipeObject = {
         'name': recipeNameValue,
@@ -450,7 +413,6 @@ $(document).on('click', '.addbtn', function (event) {
             console.log(errorThrown);
         });
 });
-
 
 $(document).on('click', '#addbutton', function (event) {
     event.preventDefault();
