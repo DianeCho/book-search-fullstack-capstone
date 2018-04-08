@@ -11,7 +11,7 @@ const bodyParser = require('body-parser');
 
 
 //connection mongoose schemas
-var recipe = require('./models/recipe');
+var book = require('./models/book');
 const User = require('./models/user');
 var list = require('./models/list');
 
@@ -429,82 +429,89 @@ app.get('/book-search-title/:titleName', (req, res) => {
 //});
 
 
-//get shortlist api endpoint
-app.get('/retrieve-sList/', function (req, res) {
-    list.find({}).sort({
-        ingredient: 1
-    }).exec(function (err, item) {
-        //console.log(item);
-        if (err) {
-            return res.status(500).json({
-                message: 'Internal Server Error'
-            });
-        }
-        //console.log(item);
-        res.status(200).json(item);
-    })
-})
+////get shortlist api endpoint
+//app.get('/retrieve-sList/', function (req, res) {
+//    list.find({}).sort({
+//        ingredient: 1
+//    }).exec(function (err, item) {
+//        //console.log(item);
+//        if (err) {
+//            return res.status(500).json({
+//                message: 'Internal Server Error'
+//            });
+//        }
+//        //console.log(item);
+//        res.status(200).json(item);
+//    })
+//})
 
 
 
 //add recipe api endpoint to db
-//app.post('/add-recipe-db/', function (req, res) {
-//
-//
-//    let aRecipe = getSingleFromYum(req.body.id);
-//    //    //console.log(aRecipe);
-//
-//    //get the data from the first api call
-//    aRecipe.on('end', function (item) {
-//        //        //console.log(req.body.shortList.split(","));
-//        //        //console.log(item.ingredientLines);
-//
-//
-//        storeIngredient(req.body.shortList.split(","), item.ingredientLines);
-//        //console.log(item.ingredientLines);
-//        //db connection and data queries
-//        recipe.create({
-//            name: req.body.name,
-//            rating: req.body.rating,
-//            course: req.body.course,
-//            id: req.body.id,
-//            day: req.body.day,
-//            shortList: req.body.shortList,
-//            username: req.body.username,
-//            ingredients: JSON.stringify(item.ingredientLines)
-//
-//        }, function (err, item) {
-//            if (err) {
-//                return res.status(500).json({
-//                    message: 'Internal Server Error'
-//                });
-//            }
-//            res.status(201).json(item);
-//        });
-//
-//        list.create({
-//            ingredients: JSON.stringify(item.ingredientLines)
-//
-//        }, function (err, item) {
-//            if (err) {
-//                return res.status(500).json({
-//                    message: 'Internal Server Error'
-//                });
-//            }
-//            //            res.status(201).json(item);
-//        });
+app.post('/add-book-db/', function (req, res) {
+    console.log("GLIDE AJAX TEST FOR ADD BOOK YAY");
+    console.log("BINH TEST RECIPE CREATE " + req.body.username);
+    book.create({
+        //        name: req.body.name,
+        //        rating: req.body.rating,
+        //        course: req.body.course,
+        //        id: req.body.id,
+        //        day: req.body.day,
+        //        shortList: req.body.shortList,
+        author: req.body.author,
+        title: req.body.title,
+        username: req.body.username,
 
+        //        ingredients: JSON.stringify(item.ingredientLines)
+        //
+    })
 
-//res.json(item);
+});
+
+//storeIngredient(req.body.shortList.split(","), item.ingredientLines);
+//console.log(item.ingredientLines);
+//db connection and data queries
+//    recipe.create({
+//        name: req.body.name,
+//        rating: req.body.rating,
+//        course: req.body.course,
+//        id: req.body.id,
+//        day: req.body.day,
+//        shortList: req.body.shortList,
+//        username: req.body.username,
+//        ingredients: JSON.stringify(item.ingredientLines)
+//
+//    }, function (err, item) {
+//        if (err) {
+//            return res.status(500).json({
+//                message: 'Internal Server Error'
+//            });
+//        }
+//        res.status(201).json(item);
 //    });
 //
-//    //error handling
-//    aRecipe.on('error', function (code) {
-//        console.log('getSingleFromYum from api not working');
-//        res.sendStatus(code);
+//    list.create({
+//        ingredients: JSON.stringify(item.ingredientLines)
+//
+//    }, function (err, item) {
+//        if (err) {
+//            return res.status(500).json({
+//                message: 'Internal Server Error'
+//            });
+//        }
+//        //            res.status(201).json(item);
 //    });
 //
 //
+//    res.json(item);
+//});
+//error handling
+//aRecipe.on('error', function (code) {
+//console.log('getSingleFromYum from api not working');
+//res.sendStatus(code);
+//});
+
+
 //});
 
 

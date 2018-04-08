@@ -22,6 +22,12 @@ function buildBookList(dataOutput, username) {
     buildHtml += '<button type="button" class="addbtn">Add to list</button>';
     buildHtml += '</li>';
     //        });
+    buildHtml += "<form class='storeToDb'>";
+    buildHtml += "<input type='hidden' class='storeToDbUserName' value='" + username + "'>";
+    buildHtml += "<input type='hidden' class='storeToDbAuthor' value='" + dataOutput.author + "'>";
+    buildHtml += "<input type='hidden' class='storeToDbTitle' value='" + dataOutput.title + "'>";
+    buildHtml += '<button type="button" class="addbtn">Add to list</button>';
+    buildHtml += "</form>";
     $('.goodreads-search-results').html(buildHtml);
 
 };
@@ -373,24 +379,19 @@ $(document).on('click', '.addbtn', function (event) {
     console.log('add books to list');
 
     var recipeNameValue = $(this).parent().find('.storeToDbName').val();
-    var recipeRatingValue = $(this).parent().find('.storeToDbRating').val();
-    var recipeCourseValue = $(this).parent().find('.storeToDbCourse').val();
-    var recipeIdValue = $(this).parent().find('.storeToDbId').val();
-    //var recipeDayValue = $(this).parent().find('.storeToDay').val();
-    var recipeDayValue = $('#recipeDay').val();
-    var recipeStoreToShortList = $(this).parent().find('.storeToShortList').val();
-    var recipeUserName = $(this).parent().find('.storeToUserName').val();
+    var bookUserName = $(this).parent().find('.storeToDbUserName').val();
+    var bookAuthor = $(this).parent().find('.storeToDbAuthor').val();
+    var bookTitle = $(this).parent().find('.storeToDbTitle').val();
+
+    alert(bookUserName);
+    alert(bookAuthor);
+    alert(bookTitle);
 
 
-
-    var recipeObject = {
-        'name': recipeNameValue,
-        'rating': recipeRatingValue,
-        'course': recipeCourseValue,
-        'id': recipeIdValue,
-        'day': recipeDayValue,
-        'shortList': recipeStoreToShortList,
-        'username': recipeUserName,
+    var bookObject = {
+        'username': bookUserName,
+        'author': bookAuthor,
+        'title': bookTitle
 
     };
 
@@ -399,13 +400,13 @@ $(document).on('click', '.addbtn', function (event) {
             method: 'POST',
             dataType: 'json',
             contentType: 'application/json',
-            data: JSON.stringify(recipeObject),
-            url: '/add-recipe-db/',
+            data: JSON.stringify(bookObject),
+            url: '/add-book-db/',
         })
         .done(function (result) {
             console.log(result);
             displayError("Added to list");
-            addToMenu(recipeObject.name, recipeObject.id);
+            addToMenu(bookObject.name, bookObject.id);
         })
         .fail(function (jqXHR, error, errorThrown) {
             console.log(jqXHR);
