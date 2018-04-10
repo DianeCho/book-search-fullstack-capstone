@@ -184,28 +184,43 @@ $(document).on('click', '.searchbtn', function (event) {
 });
 
 
-function buildShoppingList(result) {
+function buildBookReview(result) {
     //builds ingredient list for ingredients page
     console.log(result);
     let aggregateList = [];
     let aggregateLower = '';
-    let currentIngredient = '';
-    let oldIngredient = '';
-    let ingredientHtml = '';
+    let currentBook = '';
+    let oldBook = '';
+    let bookHtml = '';
     for (let e = 0; e < result.length; e++) {
         if (result[e].title !== undefined) {
             var resultconvert = result[e].title;
             //console.log(resultconvert);
             var resultLower = resultconvert.toLowerCase();
-            currentIngredient = resultLower;
+            currentBook = resultLower;
 
-            if (currentIngredient !== oldIngredient) {
-                ingredientHtml += '<li id="' + result[e].title + '">';
-                ingredientHtml += '<div class="ingredients-box">';
-                ingredientHtml += '<label for="ingredients">' + result[e].title + '</label>';
-                ingredientHtml += '<ol class ="ingredientslist">';
+            if (currentBook !== oldBook) {
+                bookHtml += '<li>';
+                bookHtml += '<div class="book-box">';
+                bookHtml += '<label for="book">' + result[e].title + '</label>';
+                bookHtml += '<img src="images/recipe.jpg" ' + result[e].image_url + 'class="books" alt="">';
+                bookHtml += '<ul class="bookreviewlist">';
+                bookHtml += '<textarea class="reviewbookbox" rows="4" cols="50">' + result[e].review + '';
+                bookHtml += '</textarea>';
+                bookHtml += '</ul>';
+                bookHtml += '<button type="button" class="reviewbtn">Review</button>';
+                bookHtml += '<button type="button" class="savebtn">Save</button>';
+                bookHtml += '</div>';
+                bookHtml += '</li>';
 
             }
+            //            if (currentBook !== oldBook) {
+            //                ingredientHtml += '<li id="' + result[e].title + '">';
+            //                ingredientHtml += '<div class="ingredients-box">';
+            //                ingredientHtml += '<label for="ingredients">' + result[e].title + '</label>';
+            //                ingredientHtml += '<ol class ="ingredientslist">';
+            //
+            //            }
 
             ingredientHtml += '<li> ' + result[e].author;
             ingredientHtml += '<form class="deleteDb">';
@@ -225,15 +240,15 @@ function buildShoppingList(result) {
             }
 
             //console.log(currentIngredient, oldIngredient);
-            if (currentIngredient !== resultLower) {
+            if (currentBook !== resultLower) {
                 //console.log('!', currentIngredient, oldIngredient);
                 //console.log('!', currentIngredient, oldIngredient);
-                ingredientHtml += '</ol></div></li>';
+                bookHtml += '</ol></div></li>';
 
             }
-            oldIngredient = currentIngredient;
+            oldBook = currentBook;
         }
-        $('.js-booklist-page .container ul').html(ingredientHtml);
+        $('.js-booklist-page .container ul').html(bookHtml);
     }
     //console.log('aggregate', aggregateList);
     //build output
@@ -242,15 +257,16 @@ function buildShoppingList(result) {
 
 $(document).on('click', '.continuebtn', function (event) {
     event.preventDefault();
-
+    let username = $('.js-query-username').val();
     $.ajax({
             method: 'GET',
             dataType: 'json',
             contentType: 'application/json',
-            url: '/retrieve-sList/',
+            url: '/get-book-db/' + username,
         })
         .done(function (result) {
-            buildShoppingList(result);
+            console.log(result);
+            buildBookReview(result);
         })
         .fail(function (jqXHR, error, errorThrown) {
             console.log(jqXHR);
@@ -273,7 +289,7 @@ $(document).on('submit', '.savebtn', function (event) {
             url: '/retrieve-sList/',
         })
         .done(function (result) {
-            buildShoppingList(result);
+            buildBookReview(result);
         })
         .fail(function (jqXHR, error, errorThrown) {
             console.log(jqXHR);
@@ -345,7 +361,7 @@ $(document).on('click', '.deletebtn', function (event) {
                     url: '/retrieve-sList/',
                 })
                 .done(function (result) {
-                    buildShoppingList(result);
+                    buildBookList(result);
                 })
                 .fail(function (jqXHR, error, errorThrown) {
                     console.log(jqXHR);
@@ -383,9 +399,9 @@ $(document).on('click', '.addbtn', function (event) {
     var bookAuthor = $(this).parent().find('.storeToDbAuthor').val();
     var bookTitle = $(this).parent().find('.storeToDbTitle').val();
 
-    alert(bookUserName);
-    alert(bookAuthor);
-    alert(bookTitle);
+    //    alert(bookUserName);
+    //    alert(bookAuthor);
+    //    alert(bookTitle);
 
 
     var bookObject = {
@@ -395,7 +411,7 @@ $(document).on('click', '.addbtn', function (event) {
 
     };
 
-    //console.log(recipeObject);
+    console.log(bookObject);
     $.ajax({
             method: 'POST',
             dataType: 'json',
@@ -405,8 +421,8 @@ $(document).on('click', '.addbtn', function (event) {
         })
         .done(function (result) {
             console.log(result);
-            displayError("Added to list");
-            addToMenu(bookObject.name, bookObject.id);
+            //            displayError("Added to list");
+            //             addToList(bookObject.name, bookObject.id);
         })
         .fail(function (jqXHR, error, errorThrown) {
             console.log(jqXHR);
@@ -451,7 +467,7 @@ $(document).on('click', '#addbutton', function (event) {
                         url: '/retrieve-sList/',
                     })
                     .done(function (result) {
-                        buildShoppingList(result);
+                        buildBookList(result);
                     })
                     .fail(function (jqXHR, error, errorThrown) {
                         console.log(jqXHR);
@@ -702,7 +718,7 @@ $(document).on('click', '#addbutton', function (event) {
 //});
 
 
-//function buildShoppingList(result) {
+//function buildBookList(result) {
 //    //builds ingredient list for ingredients page
 //    console.log(result);
 //    let aggregateList = [];
@@ -767,7 +783,7 @@ $(document).on('click', '#addbutton', function (event) {
 //            url: '/retrieve-sList/',
 //        })
 //        .done(function (result) {
-//            buildShoppingList(result);
+//            buildBookList(result);
 //        })
 //        .fail(function (jqXHR, error, errorThrown) {
 //            console.log(jqXHR);
@@ -845,7 +861,7 @@ $(document).on('click', '#addbutton', function (event) {
 //                    url: '/retrieve-sList/',
 //                })
 //                .done(function (result) {
-//                    buildShoppingList(result);
+//                    buildBookList(result);
 //                })
 //                .fail(function (jqXHR, error, errorThrown) {
 //                    console.log(jqXHR);
@@ -954,7 +970,7 @@ $(document).on('click', '#addbutton', function (event) {
 //                        url: '/retrieve-sList/',
 //                    })
 //                    .done(function (result) {
-//                        buildShoppingList(result);
+//                        buildBookList(result);
 //                    })
 //                    .fail(function (jqXHR, error, errorThrown) {
 //                        console.log(jqXHR);

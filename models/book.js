@@ -14,7 +14,12 @@ author: {
 username: {
     type: String,
     required: false
+},
+    review: {
+    type: String,
+    required: false
 }
+
 });
 
 

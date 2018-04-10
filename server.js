@@ -328,7 +328,7 @@ app.post('/ingredients/create', function (req, res) {
 
 
 //get all recipes api endpoint
-app.get('/retrieve-recipes/', function (req, res) {
+app.get('/c/', function (req, res) {
     recipe.find(function (err, item) {
         //        //console.log(item);
         if (err) {
@@ -446,27 +446,61 @@ app.get('/book-search-title/:titleName', (req, res) => {
 //})
 
 
-
 //add recipe api endpoint to db
 app.post('/add-book-db/', function (req, res) {
-    console.log("GLIDE AJAX TEST FOR ADD BOOK YAY");
-    console.log("BINH TEST RECIPE CREATE " + req.body.username);
+    //    console.log(req.body.username);
     book.create({
-        //        name: req.body.name,
-        //        rating: req.body.rating,
-        //        course: req.body.course,
-        //        id: req.body.id,
-        //        day: req.body.day,
-        //        shortList: req.body.shortList,
-        author: req.body.author,
-        title: req.body.title,
-        username: req.body.username,
 
-        //        ingredients: JSON.stringify(item.ingredientLines)
-        //
-    })
-
+            author: req.body.author,
+            title: req.body.title,
+            username: req.body.username,
+            review: '',
+        },
+        function (err, item) {
+            if (err) {
+                return res.status(500).json({
+                    message: 'Internal Server Error'
+                });
+            }
+            res.status(201).json(item);
+        });
+    //    list.create({
+    //        ingredients: JSON.stringify(item.ingredientLines)
+    //
+    //    }, function (err, item) {
+    //        if (err) {
+    //            return res.status(500).json({
+    //                message: 'Internal Server Error'
+    //            });
+    //        }
+    //        //            res.status(201).json(item);
+    //    });
+    //
+    //
+    //    res.json(item);
+    //});
+    //error handling
+    //aRecipe.on('error', function (code) {
+    //console.log('getSingleFromYum from api not working');
+    //res.sendStatus(code);
+    //});
 });
+
+app.get('/get-book-db/:username', function (req, res) {
+    console.log(req.params.username);
+    book.find({
+            username: req.params.username,
+        },
+        function (err, item) {
+            if (err) {
+                return res.status(500).json({
+                    message: 'Internal Server Error'
+                });
+            }
+            res.status(200).json(item);
+        });
+});
+
 
 //storeIngredient(req.body.shortList.split(","), item.ingredientLines);
 //console.log(item.ingredientLines);
@@ -513,7 +547,6 @@ app.post('/add-book-db/', function (req, res) {
 
 
 //});
-
 
 
 //delete ingredient api endpoint by id
