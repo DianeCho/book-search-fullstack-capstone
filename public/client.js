@@ -189,69 +189,164 @@ $(document).on('click', '.searchbtn', function (event) {
 });
 
 
-function buildBookReview(result) {
+function buildShoppingList(result) {
     //builds ingredient list for ingredients page
     console.log(result);
     let aggregateList = [];
     let aggregateLower = '';
-    let currentBook = '';
-    let oldBook = '';
-    let bookHtml = '';
+    let currentIngredient = '';
+    let oldIngredient = '';
+    let ingredientHtml = '';
     for (let e = 0; e < result.length; e++) {
-        if (result[e] !== undefined) {
-            var resultconvert = result[e];
-            console.log(resultconvert);
-            //var resultLower = resultconvert.toLowerCase();
-            //currentBook = resultLower;
+        if (result[e].title !== undefined) {
+            var resultconvert = result[e].title;
+            //console.log(resultconvert);
+            var resultLower = resultconvert.toLowerCase();
+            currentIngredient = resultLower;
 
-            if (currentBook !== oldBook) {
-                bookHtml += '<ul>';
-                bookHtml += '<li>';
-                bookHtml += '<div class="book-box">';
-                bookHtml += '<label for="book">' + result[e] + '</label>';
-                bookHtml += '<img src="' + result[e] + '" class="bookimg" alt="">';
-                bookHtml += '<ul class="bookreviewlist">';
-                bookHtml += '<textarea class="reviewbookbox" rows="4" cols="50">' + result[e] + '';
-                bookHtml += '</textarea>';
-                bookHtml += '</ul>';
-                bookHtml += '<button type="button" class="reviewbtn">Review</button>';
-                bookHtml += '<button type="button" class="savebtn">Save</button>';
-                bookHtml += '</div>';
-                bookHtml += '</li class ="ingredientslist">';
-                bookHtml += '</ul>';
-
+            if (currentIngredient !== oldIngredient) {
+                ingredientHtml += '<li id="' + result[e].title + '">';
+                ingredientHtml += '<div class="ingredients-box">';
+                ingredientHtml += '<label for="ingredients">' + result[e].title + '</label>';
+                ingredientHtml += '<ol class ="ingredientslist">';
             }
 
+            if (result[e].author !== undefined) {
+                var resultconvert = result[e].author;
+                //console.log(resultconvert);
+                var resultLower = resultconvert.toLowerCase();
+                currentIngredient = resultLower;
 
-            bookHtml += '<li> ' + result[e].author;
-            bookHtml += '<form class="deleteDb">';
-            bookHtml += '<input type="hidden" class = "deleteFromDBName" value=' + result[e].title + ">";
-            bookHtml += '<input type="hidden" class = "deleteFromDB" value=' + result[e]._id + ">";
-            bookHtml += '<button class ="deletebtn" type="button">';
-            bookHtml += '<i class="fa fa-trash" aria-hidden="true"></i> ';
-            bookHtml += '</button>  ';
-            bookHtml += '</form> ';
-            bookHtml += '</li> ';
-            let a = e;
-            a++;
-            if (a < result.length) {
-                resultconvert = result[a];
-                //                            resultLower = resultconvert.toLowerCase();
+                if (currentIngredient !== oldIngredient) {
+                    ingredientHtml += '<li id="' + result[e].author + '">';
+                    ingredientHtml += '<div class="ingredients-box">';
+                    ingredientHtml += '<label for="ingredients">' + result[e].author + '</label>';
+                    ingredientHtml += '<ol class ="ingredientslist">';
+                }
+
+
+                if (result[e].image_url !== undefined) {
+                    var resultconvert = result[e].image_url;
+                    //console.log(resultconvert);
+                    var resultLower = resultconvert.toLowerCase();
+                    currentIngredient = resultLower;
+
+                    if (currentIngredient !== oldIngredient) {
+                        ingredientHtml += '<li id="' + result[e].image_url + '">';
+                        ingredientHtml += '<div class="ingredients-box">';
+                        ingredientHtml += '<label for="ingredients">' + result[e].image_url + '</label>';
+                        ingredientHtml += '<ol class ="ingredientslist">';
+                    }
+
+
+
+
+
+
+
+
+                    ingredientHtml += '<li> ' + result[e].qty;
+                    ingredientHtml += '<form class="deleteDb">';
+                    ingredientHtml += '<input type="hidden" class = "deleteFromDBName" value=' + result[e].ingredient + ">";
+                    ingredientHtml += '<input type="hidden" class = "deleteFromDB" value=' + result[e]._id + ">";
+
+                    ingredientHtml += '<button class ="deletebtn" type="button">';
+                    ingredientHtml += '<i class="fa fa-trash" aria-hidden="true"></i> ';
+                    ingredientHtml += '</button>  ';
+                    ingredientHtml += '</form> ';
+                    ingredientHtml += '</li> ';
+                    let a = e;
+                    a++;
+                    if (a < result.length) {
+                        resultconvert = result[a].ingredient;
+                        resultLower = resultconvert.toLowerCase();
+                    }
+
+                    //console.log(currentIngredient, oldIngredient);
+                    if (currentIngredient !== resultLower) {
+                        //console.log('!', currentIngredient, oldIngredient);
+                        //console.log('!', currentIngredient, oldIngredient);
+                        ingredientHtml += '</ol></div></li>';
+
+                    }
+                    oldIngredient = currentIngredient;
+                }
+                $('.js-booklist-page .container ul').html(ingredientHtml);
             }
-
-            console.log(currentBook, oldBook);
-            //            if (currentBook !== resultLower) {
-            //                //console.log('!', currentBook, oldBook);
-            //                bookHtml += '</ol></div></li>';
-            //
-            //            }
-            //            oldBook = currentBook;
         }
-        $('.js-booklist-page .container ul').html(bookHtml);
-    };
-    console.log('aggregate', aggregateList);
-    //    build output
+    }
+
+    //console.log('aggregate', aggregateList);
+    //build output
 };
+
+
+
+
+
+//function buildBookReview(result) {
+//    //builds ingredient list for ingredients page
+//    console.log(result);
+//    let aggregateList = [];
+//    let aggregateLower = '';
+//    let currentBook = '';
+//    let oldBook = '';
+//    let bookHtml = '';
+//    for (let e = 0; e < result.length; e++) {
+//        if (result[e] !== undefined) {
+//            var resultconvert = result[e];
+//            console.log(resultconvert);
+//            //var resultLower = resultconvert.toLowerCase();
+//            //currentBook = resultLower;
+//
+//            if (currentBook !== oldBook) {
+//                bookHtml += '<ul>';
+//                bookHtml += '<li>';
+//                bookHtml += '<div class="book-box">';
+//                bookHtml += '<label for="book">' + result[e] + '</label>';
+//                bookHtml += '<img src="' + result[e] + '" class="bookimg" alt="">';
+//                bookHtml += '<ul class="bookreviewlist">';
+//                bookHtml += '<textarea class="reviewbookbox" rows="4" cols="50">' + result[e] + '';
+//                bookHtml += '</textarea>';
+//                bookHtml += '</ul>';
+//                bookHtml += '<button type="button" class="reviewbtn">Review</button>';
+//                bookHtml += '<button type="button" class="savebtn">Save</button>';
+//                bookHtml += '</div>';
+//                bookHtml += '</li class ="ingredientslist">';
+//                bookHtml += '</ul>';
+//
+//            }
+//
+//
+//            bookHtml += '<li> ' + result[e].author;
+//            bookHtml += '<form class="deleteDb">';
+//            bookHtml += '<input type="hidden" class = "deleteFromDBName" value=' + result[e].title + ">";
+//            bookHtml += '<input type="hidden" class = "deleteFromDB" value=' + result[e]._id + ">";
+//            bookHtml += '<button class ="deletebtn" type="button">';
+//            bookHtml += '<i class="fa fa-trash" aria-hidden="true"></i> ';
+//            bookHtml += '</button>  ';
+//            bookHtml += '</form> ';
+//            bookHtml += '</li> ';
+//            let a = e;
+//            a++;
+//            if (a < result.length) {
+//                resultconvert = result[a];
+//                //                            resultLower = resultconvert.toLowerCase();
+//            }
+//
+//            console.log(currentBook, oldBook);
+//            //            if (currentBook !== resultLower) {
+//            //                //console.log('!', currentBook, oldBook);
+//            //                bookHtml += '</ol></div></li>';
+//            //
+//            //            }
+//            //            oldBook = currentBook;
+//        }
+//        $('.js-booklist-page .container ul').html(bookHtml);
+//    };
+//    console.log('aggregate', aggregateList);
+//    //    build output
+//};
 
 
 $(document).on('click', '.continuebtn', function (event) {
@@ -265,7 +360,7 @@ $(document).on('click', '.continuebtn', function (event) {
         })
         .done(function (result) {
             console.log(result);
-            buildBookReview(result);
+            buildShoppingList(result);
         })
         .fail(function (jqXHR, error, errorThrown) {
             console.log(jqXHR);
@@ -288,7 +383,7 @@ $(document).on('submit', '.savebtn', function (event) {
             url: '/retrieve-sList/',
         })
         .done(function (result) {
-            buildBookReview(result);
+            buildShoppingList(result);
         })
         .fail(function (jqXHR, error, errorThrown) {
             console.log(jqXHR);
@@ -334,7 +429,7 @@ $(document).on('click', '.deletebtn', function (event) {
             url: '/delete/' + idValue,
         })
         .done(function (result) {
-            displayError("Deleted");
+            //            displayError("Deleted");
             //if the last quantity of an ingredient is deleted delete the parent ingredient too
             $.ajax({
                     method: 'DELETE',
@@ -360,7 +455,7 @@ $(document).on('click', '.deletebtn', function (event) {
                     url: '/retrieve-sList/',
                 })
                 .done(function (result) {
-                    buildBookList(result);
+                    buildShoppingList(result);
                 })
                 .fail(function (jqXHR, error, errorThrown) {
                     console.log(jqXHR);
@@ -718,7 +813,7 @@ $(document).on('click', '#addbutton', function (event) {
 //});
 
 
-//function buildBookList(result) {
+//function buildShoppingList(result) {
 //    //builds ingredient list for ingredients page
 //    console.log(result);
 //    let aggregateList = [];
@@ -861,7 +956,7 @@ $(document).on('click', '#addbutton', function (event) {
 //                    url: '/retrieve-sList/',
 //                })
 //                .done(function (result) {
-//                    buildBookList(result);
+//                    buildShoppingList(result);
 //                })
 //                .fail(function (jqXHR, error, errorThrown) {
 //                    console.log(jqXHR);
@@ -970,7 +1065,7 @@ $(document).on('click', '#addbutton', function (event) {
 //                        url: '/retrieve-sList/',
 //                    })
 //                    .done(function (result) {
-//                        buildBookList(result);
+//                        buildShoppingList(result);
 //                    })
 //                    .fail(function (jqXHR, error, errorThrown) {
 //                        console.log(jqXHR);
