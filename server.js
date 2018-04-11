@@ -310,20 +310,20 @@ app.post('/users/signin', function (req, res) {
 
 
 //create ingredients api endpoint
-app.post('/ingredients/create', function (req, res) {
-    list.create({
-        ingredient: req.body.ingredient,
-        qty: req.body.qty,
-
-    }, function (err, item) {
-        if (err) {
-            return res.status(500).json({
-                message: 'Internal Server Error'
-            });
-        }
-        res.status(201).json(item);
-    });
-});
+//app.post('/ingredients/create', function (req, res) {
+//    list.create({
+//        ingredient: req.body.ingredient,
+//        qty: req.body.qty,
+//
+//    }, function (err, item) {
+//        if (err) {
+//            return res.status(500).json({
+//                message: 'Internal Server Error'
+//            });
+//        }
+//        res.status(201).json(item);
+//    });
+//});
 
 
 
@@ -574,7 +574,7 @@ app.put('/update-review/:id', function (req, res) {
 //delete ingredient api endpoint by id
 app.delete('/delete/', function (req, res) {
     //console.log(req.params.id);
-    list.findByIdAndRemove(req.params.bookId, function (err, items) {
+    book.findByIdAndRemove(req.params.bookId, function (err, items) {
         if (err)
             return res.status(404).json({
                 message: 'Item not found.'
@@ -610,7 +610,7 @@ app.delete('/deleterec/:id', function (req, res) {
     //console.log(req.params.id);
     if (req.params.id = 'killAll') {
 
-        list.remove({}, function (err, items) {
+        book.remove({}, function (err, items) {
             if (err)
                 return res.status(404).json({
                     message: 'Item not found.'
@@ -630,7 +630,7 @@ app.delete('/deletering/:id', function (req, res) {
     //console.log(req.params.id);
     if (req.params.id = 'killAll') {
 
-        recipe.remove({}, function (err, items) {
+        book.remove({}, function (err, items) {
             if (err)
                 return res.status(404).json({
                     message: 'Item not found.'
