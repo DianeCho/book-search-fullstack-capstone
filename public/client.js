@@ -190,7 +190,7 @@ $(document).on('click', '.searchbtn', function (event) {
 });
 
 
-function buildShoppingList(result) {
+function buildList(result) {
     //builds ingredient list for ingredients page
     console.log(result);
     let aggregateList = [];
@@ -218,7 +218,14 @@ function buildShoppingList(result) {
                 ingredientHtml += '<label for="book">' + result[e].author + '</label>';
                 ingredientHtml += '<ul class="bookreviewlist">';
                 ingredientHtml += '<textarea class="reviewbookbox" rows="4" cols="50">';
+                console.log(result[e].review);
+                if (result[e].review !== '') {
+                    ingredientHtml += result[e].review;
+                };
+
                 ingredientHtml += '</textarea>';
+                ingredientHtml += '<input type="hidden" class = "updatedReviewId" value=' + result[e]._id + ">";
+                ingredientHtml += '<button class ="reviewbtn" type="button">update</button>';
                 ingredientHtml += '</ul>';
                 ingredientHtml += '</li>';
                 // ingredientHtml += '<ol class ="ingredientslist">';
@@ -282,8 +289,8 @@ function buildShoppingList(result) {
                     let a = e;
                     a++;
                     if (a < result.length) {
-                        resultconvert = result[a].ingredient;
-                        resultLower = resultconvert.toLowerCase();
+                        //                        resultconvert = result[a].ingredient;
+                        //                        resultLower = resultconvert.toLowerCase();
                     }
 
                     //console.log(currentIngredient, oldIngredient);
@@ -381,7 +388,7 @@ $(document).on('click', '.continuebtn', function (event) {
         })
         .done(function (result) {
             console.log(result);
-            buildShoppingList(result);
+            buildList(result);
         })
         .fail(function (jqXHR, error, errorThrown) {
             console.log(jqXHR);
@@ -404,7 +411,7 @@ $(document).on('submit', '.savebtn', function (event) {
             url: '/retrieve-sList/',
         })
         .done(function (result) {
-            buildShoppingList(result);
+            buildList(result);
         })
         .fail(function (jqXHR, error, errorThrown) {
             console.log(jqXHR);
@@ -429,6 +436,60 @@ $(document).on('click', '#returnmain', function (event) {
     $('.js-main-page').show();
     $('.js-booklist-page').hide();
 });
+
+$(document).on('click', '.reviewbtn', function (event) {
+
+    event.preventDefault();
+
+    var updatedTextArea = $(this).parent().find('.reviewbookbox').val();
+    var updatedReviewId = $(this).parent().find('.updatedReviewId').val();
+    console.log(updatedTextArea);
+    console.log(updatedReviewId);
+
+    var reviewUpdateObject = {
+        review: updatedTextArea,
+    };
+
+    $.ajax({
+            method: "PUT",
+            url: "/update-review/" + updatedReviewId,
+            dataType: 'json',
+            contentType: 'application/json',
+            data: JSON.stringify(reviewUpdateObject),
+
+        })
+        .done(function (result) {
+            // need to re-render the dashboard here
+            //            getAndDisplayLeads();
+            //            editToggle = false;
+            console.log(result);
+            let username = $('.js-query-username').val();
+            $.ajax({
+                    method: 'GET',
+                    dataType: 'json',
+                    contentType: 'application/json',
+                    url: '/get-book-db/' + username,
+                })
+                .done(function (result) {
+                    console.log(result);
+                    buildList(result);
+                })
+                .fail(function (jqXHR, error, errorThrown) {
+                    console.log(jqXHR);
+                    console.log(error);
+                    console.log(errorThrown);
+                });
+
+        })
+        .fail(function (jqXHR, error, errorThrown) {
+            console.log(jqXHR);
+            console.log(error);
+            console.log(errorThrown);
+        });
+    //    $('.js-main-page').show();
+    //    $('.js-booklist-page').hide();
+});
+
 
 
 $(document).on('click', '.deletebtn', function (event) {

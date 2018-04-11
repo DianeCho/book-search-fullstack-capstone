@@ -469,7 +469,7 @@ app.post('/add-book-db/', function (req, res) {
     //        ingredients: JSON.stringify(item.ingredientLines)
     //
     //    }, function (err, item) {
-    //        if (err) {
+    //  stor  if (err) {
     //            return res.status(500).json({
     //                message: 'Internal Server Error'
     //            });
@@ -502,6 +502,27 @@ app.get('/get-book-db/:username', function (req, res) {
         });
 });
 
+
+app.put('/update-review/:id', function (req, res) {
+    var toUpdate = {};
+    var updateableFields = ['review'];
+    updateableFields.forEach(function (field) {
+        if (field in req.body) {
+            toUpdate[field] = req.body[field];
+        }
+    });
+    book.findByIdAndUpdate(req.params.id, {
+        $set: toUpdate
+    }).exec().then(function (book) {
+        return res.status(204).json({
+            book: book
+        });
+    }).catch(function (err) {
+        return res.status(500).json({
+            message: 'Internal Server Error'
+        });
+    });
+});
 
 //storeIngredient(req.body.shortList.split(","), item.ingredientLines);
 //console.log(item.ingredientLines);
