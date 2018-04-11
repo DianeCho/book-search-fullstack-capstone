@@ -205,10 +205,11 @@ function buildShoppingList(result) {
             currentIngredient = resultLower;
 
             if (currentIngredient !== oldIngredient) {
-                ingredientHtml += '<li id="' + result[e].title + '">';
-                ingredientHtml += '<div class="ingredients-box">';
-                ingredientHtml += '<label for="ingredients">' + result[e].title + '</label>';
-                ingredientHtml += '<ol class ="ingredientslist">';
+                ingredientHtml += '<li id="' + '">' + '<br>';
+                ingredientHtml += result[e].title;
+                ingredientHtml += '<div class="book-box">';
+                ingredientHtml += '<label for="book">' + result[e].author + '</label>';
+                // ingredientHtml += '<ol class ="ingredientslist">';
             }
 
             if (result[e].author !== undefined) {
@@ -218,10 +219,10 @@ function buildShoppingList(result) {
                 currentIngredient = resultLower;
 
                 if (currentIngredient !== oldIngredient) {
-                    ingredientHtml += '<li id="' + result[e].author + '">';
-                    ingredientHtml += '<div class="ingredients-box">';
-                    ingredientHtml += '<label for="ingredients">' + result[e].author + '</label>';
-                    ingredientHtml += '<ol class ="ingredientslist">';
+                    //                ingredientHtml += '<li id="' + result[e].author + '">';
+                    //                ingredientHtml += '<div class="book-box">';
+                    //                ingredientHtml += '<label for="book">' + result[e].author + '</label>';
+                    //  ingredientHtml += '<ol class ="ingredientslist">';
                 }
 
 

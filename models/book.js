@@ -2,7 +2,7 @@ var mongoose = require('mongoose');
 
 var bookSchema = new mongoose.Schema({
 
-author: {
+    author: {
         type: String,
         required: false
     },
@@ -11,14 +11,18 @@ author: {
         type: String,
         required: false
     },
-username: {
-    type: String,
-    required: false
-},
+    image_url: {
+        type: String,
+        required: false
+    },
+    username: {
+        type: String,
+        required: false
+    },
     review: {
-    type: String,
-    required: false
-}
+        type: String,
+        required: false
+    }
 
 });
 
