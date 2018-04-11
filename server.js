@@ -452,6 +452,7 @@ app.post('/add-book-db/', function (req, res) {
     book.create({
 
             author: req.body.author,
+            image_url: req.body.image_url,
             title: req.body.title,
             username: req.body.username,
             review: '',

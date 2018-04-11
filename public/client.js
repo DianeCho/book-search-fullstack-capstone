@@ -31,6 +31,7 @@ function buildBookList(dataOutput, username) {
     buildHtml += "<input type='hidden' class='storeToDbUserName' value='" + username + "'>";
     buildHtml += "<input type='hidden' class='storeToDbAuthor' value='" + dataOutput.author + "'>";
     buildHtml += "<input type='hidden' class='storeToDbTitle' value='" + dataOutput.title + "'>";
+    buildHtml += "<input type='hidden' class='storeToDbURL' value='" + dataOutput.image_url + "'>";
     buildHtml += '<button type="button" class="addbtn">Add to list</button>';
     buildHtml += "</form>";
     $('.goodreads-search-results').html(buildHtml);
@@ -200,17 +201,39 @@ function buildShoppingList(result) {
     for (let e = 0; e < result.length; e++) {
         if (result[e].title !== undefined) {
             var resultconvert = result[e].title;
+
             //console.log(resultconvert);
             var resultLower = resultconvert.toLowerCase();
             currentIngredient = resultLower;
 
+
             if (currentIngredient !== oldIngredient) {
-                ingredientHtml += '<li id="' + '">' + '<br>';
-                ingredientHtml += result[e].title;
+                //                ingredientHtml += '<li id="' + result[e].image_url + '">' + '<br>';
+                ingredientHtml += '<li>';
+                //                ingredientHtml += result[e].title;
+                //                ingredientHtml += result[e].image_url;
                 ingredientHtml += '<div class="book-box">';
+                ingredientHtml += '<label for="book">' + result[e].title + '</label>';
+                ingredientHtml += '<img src="' + result[e].image_url + '" class="books"></div>';
                 ingredientHtml += '<label for="book">' + result[e].author + '</label>';
+                ingredientHtml += '<ul class="bookreviewlist">';
+                ingredientHtml += '<textarea class="reviewbookbox" rows="4" cols="50">';
+                ingredientHtml += '</textarea>';
+                ingredientHtml += '</ul>';
+                ingredientHtml += '</li>';
                 // ingredientHtml += '<ol class ="ingredientslist">';
+
+
             }
+
+            //            if (currentIngredient !== oldIngredient) {
+            //                ingredientHtml += '<li id="' + result[e].title + '">' + "<br>";
+            //                ingredientHtml += result[e].author + "<br>";
+            //                ingredientHtml += URLTEST + "<br>";
+            //                ingredientHtml += '<div class="ingredients-box">';
+            //                ingredientHtml += '<label for="ingredients">' + result[e].title + '</label>';
+            //                //ingredientHtml += '<ol class ="ingredientslist">';
+            //            }
 
             if (result[e].author !== undefined) {
                 var resultconvert = result[e].author;
@@ -219,10 +242,10 @@ function buildShoppingList(result) {
                 currentIngredient = resultLower;
 
                 if (currentIngredient !== oldIngredient) {
-                    //                ingredientHtml += '<li id="' + result[e].author + '">';
-                    //                ingredientHtml += '<div class="book-box">';
-                    //                ingredientHtml += '<label for="book">' + result[e].author + '</label>';
-                    //  ingredientHtml += '<ol class ="ingredientslist">';
+                    //                    ingredientHtml += '<li id="' + result[e].author + '">';
+                    //                    ingredientHtml += '<div class="ingredients-box">';
+                    //                    ingredientHtml += '<label for="ingredients">' + result[e].author + '</label>';
+                    //ingredientHtml += '<ol class ="ingredientslist">';
                 }
 
 
@@ -233,10 +256,10 @@ function buildShoppingList(result) {
                     currentIngredient = resultLower;
 
                     if (currentIngredient !== oldIngredient) {
-                        ingredientHtml += '<li id="' + result[e].image_url + '">';
-                        ingredientHtml += '<div class="ingredients-box">';
-                        ingredientHtml += '<label for="ingredients">' + result[e].image_url + '</label>';
-                        ingredientHtml += '<ol class ="ingredientslist">';
+                        //                        ingredientHtml += '<li id="' + result[e].image_url + '">';
+                        //                        ingredientHtml += '<div class="ingredients-box">';
+                        //                        ingredientHtml += '<label for="ingredients">' + result[e].image_url + '</label>';
+                        //ingredientHtml += '<ol class ="ingredientslist">';
                     }
 
 
@@ -280,8 +303,6 @@ function buildShoppingList(result) {
     //console.log('aggregate', aggregateList);
     //build output
 };
-
-
 
 
 
@@ -348,7 +369,6 @@ function buildShoppingList(result) {
 //    console.log('aggregate', aggregateList);
 //    //    build output
 //};
-
 
 $(document).on('click', '.continuebtn', function (event) {
     event.preventDefault();
@@ -494,6 +514,7 @@ $(document).on('click', '.addbtn', function (event) {
     var bookUserName = $(this).parent().find('.storeToDbUserName').val();
     var bookAuthor = $(this).parent().find('.storeToDbAuthor').val();
     var bookTitle = $(this).parent().find('.storeToDbTitle').val();
+    var bookImage = $(this).parent().find('.storeToDbURL').val();
 
     //    alert(bookUserName);
     //    alert(bookAuthor);
@@ -503,7 +524,8 @@ $(document).on('click', '.addbtn', function (event) {
     var bookObject = {
         'username': bookUserName,
         'author': bookAuthor,
-        'title': bookTitle
+        'title': bookTitle,
+        'image_url': bookImage
 
     };
 
