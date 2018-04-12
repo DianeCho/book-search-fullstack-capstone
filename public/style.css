@@ -179,8 +179,9 @@ button:hover {
 }
 
 button.addbtn {
-    width: 30%;
-    margin-left: 36%;
+
+    width: 16%;
+    margin-left: 42%;
 }
 
 .deleteDB {
@@ -198,7 +199,7 @@ button.addbtn {
 }
 
 div.container.continueBtnWrapper {
-    margin-left: 40%;
+    margin-left: 30%;
 }
 
 .newuser-box button1 {
@@ -246,7 +247,6 @@ span.newuser {
     list-style-type: none;
     padding-right: 10px;
     padding-left: 10px;
-    border-radius: 90px;
     margin-bottom: 40px;
 }
 
@@ -254,8 +254,8 @@ span.newuser {
 .goodreads-search-results li {
 
     display: inline-block;
-    margin-left: 25%;
-    vertical-align: top;
+    margin-left: 40%;
+
 
 }
 

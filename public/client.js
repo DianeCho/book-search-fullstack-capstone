@@ -24,7 +24,7 @@ function buildBookList(dataOutput, username) {
     buildHtml += '<li>' + dataOutput.author + '</li>';
     buildHtml += '</ul>';
     buildHtml += '</div>';
-    buildHtml += '<button type="button" class="addbtn">Add to list</button>';
+//    buildHtml += '<button type="button" class="addbtn">Add to list</button>';
     buildHtml += '</li>';
     //        });
     buildHtml += "<form class='storeToDb'>";
@@ -335,6 +335,14 @@ $(document).on('click', '.continuebtn', function (event) {
     $('.js-booklist-page').show();
     $('.js-books-page').hide();
 });
+
+$(document).on('click', '#returnbtn', function (event) {
+
+    event.preventDefault();
+    $('.js-search-page').show();
+    $('.js-books-page').hide();
+});
+
 
 
 $(document).on('submit', '.savebtn', function (event) {
