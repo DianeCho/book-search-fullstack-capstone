@@ -1,10 +1,10 @@
 let loggedInUser = undefined;
 
-//function displayError(message) {
-//    $("#messageBox span").html(message);
-//    $("#messageBox").fadeIn();
-//    $("#messageBox").fadeOut(10000);
-//};
+function displayError(message) {
+    $("#messageBox span").html(message);
+    $("#messageBox").fadeIn();
+    $("#messageBox").fadeOut(10000);
+};
 
 function buildBookList(dataOutput, username) {
     //builds recipe html for user selection
@@ -214,7 +214,7 @@ function buildList(result) {
                 listHtml += '<div class="book-box">';
                 listHtml += '<label for="book">' + result[e].title + '</label>';
                 listHtml += '<img src="' + result[e].image_url + '" class="books"></div>';
-                listHtml += '<label for="book">' + result[e].author + '</label>';
+                listHtml += '<label for="book" class="bookAuthor">' + result[e].author + '</label>';
                 listHtml += '<ul class="bookreviewlist">';
                 listHtml += '<textarea class="reviewbookbox" rows="4" cols="50">';
                 console.log(result[e].review);
@@ -226,6 +226,10 @@ function buildList(result) {
                 listHtml += '<input type="hidden" class = "updatedReviewId" value=' + result[e]._id + ">";
                 listHtml += '<button class ="reviewbtn" type="button">update</button>';
                 listHtml += '<input type="hidden" class = "updatedReviewId" value=' + result[e]._id + ">";
+
+                listHtml += '<input type="hidden" class = "deleteFromDBName" value=' + result[e].title + ">";
+                listHtml += '<input type="hidden" class = "deleteFromDB" value=' + result[e]._id + ">";
+
                 listHtml += '<button class ="deletebtn" type="button">';
                 listHtml += '<i class="fa fa-trash" aria-hidden="true"></i> ';
                 listHtml += '</button>  ';
@@ -440,10 +444,10 @@ $(document).on('click', '.deletebtn', function (event) {
             method: 'DELETE',
             dataType: 'json',
             contentType: 'application/json',
-            url: '/delete/' + idValue,
+            url: '/delete/:' + idValue,
         })
         .done(function (result) {
-            //            displayError("Deleted");
+                        displayError("Deleted");
             //if the last quantity of an ingredient is deleted delete the parent ingredient too
             $.ajax({
                     method: 'DELETE',
@@ -535,7 +539,7 @@ $(document).on('click', '.addbtn', function (event) {
         })
         .done(function (result) {
             console.log(result);
-            //            displayError("Added to list");
+                        displayError("Added to list");
             //             addToList(bookObject.name, bookObject.id);
         })
         .fail(function (jqXHR, error, errorThrown) {
