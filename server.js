@@ -213,52 +213,52 @@ app.post('/users/signin', function (req, res) {
     //search db for user with email provided
     User
         .findOne({
-        email: req.body.email
-    }, function (err, items) {
+            email: req.body.email
+        }, function (err, items) {
 
 
-        //if db connection does not work, show message
-        if (err) {
-            return res.status(500).json({
-                message: "Internal server error"
-            });
-        }
+            //if db connection does not work, show message
+            if (err) {
+                return res.status(500).json({
+                    message: "Internal server error"
+                });
+            }
 
 
-        //if user not found return error
-        if (!items) {
-            // bad username
-            return res.status(401).json({
-                message: "Not found!"
-            });
-        } else {
+            //if user not found return error
+            if (!items) {
+                // bad username
+                return res.status(401).json({
+                    message: "Not found!"
+                });
+            } else {
 
 
-            //if user is found, validate password
-            items.validatePassword(req.body.password, function (err, isValid) {
+                //if user is found, validate password
+                items.validatePassword(req.body.password, function (err, isValid) {
 
 
-                //if db connection does not work, show message
-                if (err) {
-                    //console.log('There was an error validating the password.');
-                }
+                    //if db connection does not work, show message
+                    if (err) {
+                        //console.log('There was an error validating the password.');
+                    }
 
 
-                //invalid password
-                if (!isValid) {
-                    return res.status(401).json({
-                        message: "Not found"
-                    });
-                }
+                    //invalid password
+                    if (!isValid) {
+                        return res.status(401).json({
+                            message: "Not found"
+                        });
+                    }
 
 
-                //login and password successful
-                else {
-                    return res.json(items);
-                }
-            });
-        };
-    });
+                    //login and password successful
+                    else {
+                        return res.json(items);
+                    }
+                });
+            };
+        });
 });
 
 
@@ -451,20 +451,20 @@ app.post('/add-book-db/', function (req, res) {
     //    console.log(req.body.username);
     book.create({
 
-        author: req.body.author,
-        image_url: req.body.image_url,
-        title: req.body.title,
-        username: req.body.username,
-        review: '',
-    },
-                function (err, item) {
-        if (err) {
-            return res.status(500).json({
-                message: 'Internal Server Error'
-            });
-        }
-        res.status(201).json(item);
-    });
+            author: req.body.author,
+            image_url: req.body.image_url,
+            title: req.body.title,
+            username: req.body.username,
+            review: '',
+        },
+        function (err, item) {
+            if (err) {
+                return res.status(500).json({
+                    message: 'Internal Server Error'
+                });
+            }
+            res.status(201).json(item);
+        });
     //    list.create({
     //        ingredients: JSON.stringify(item.ingredientLines)
     //
@@ -490,16 +490,16 @@ app.post('/add-book-db/', function (req, res) {
 app.get('/get-book-db/:username', function (req, res) {
     console.log(req.params.username);
     book.find({
-        username: req.params.username,
-    },
-              function (err, item) {
-        if (err) {
-            return res.status(500).json({
-                message: 'Internal Server Error'
-            });
-        }
-        res.status(200).json(item);
-    });
+            username: req.params.username,
+        },
+        function (err, item) {
+            if (err) {
+                return res.status(500).json({
+                    message: 'Internal Server Error'
+                });
+            }
+            res.status(200).json(item);
+        });
 });
 
 
@@ -523,6 +523,19 @@ app.put('/update-review/:id', function (req, res) {
         });
     });
 });
+
+
+app.delete('/book/:id', function (req, res) {
+    book.findByIdAndRemove(req.params.id).exec().then(function (book) {
+        return res.status(204).end();
+    }).catch(function (err) {
+        return res.status(500).json({
+            message: 'Internal Server Error'
+        });
+    });
+});
+
+
 
 //storeIngredient(req.body.shortList.split(","), item.ingredientLines);
 //console.log(item.ingredientLines);
@@ -586,24 +599,24 @@ app.delete('/delete/', function (req, res) {
 
 
 
-//delete ingredients wihtout quantity api endpoint
-app.delete('/delete-empty-books/', function (req, res) {
-    //find ingredients without the "qty" field and remove them
-    list
-        .find({
-            qty: {
-                $exists: false
-            }
-        }).remove().exec().then(function (items) {
-            return res.status(204).json({
-                message: 'removed'
-            }).end();
-        }).catch(function (err) {
-            return res.status(500).json({
-                message: 'Internal Server Error'
-            });
-        });
-});
+////delete ingredients wihtout quantity api endpoint
+//app.delete('/delete-empty-books/', function (req, res) {
+//    //find ingredients without the "qty" field and remove them
+//    list
+//        .find({
+//            qty: {
+//                $exists: false
+//            }
+//        }).remove().exec().then(function (items) {
+//            return res.status(204).json({
+//                message: 'removed'
+//            }).end();
+//        }).catch(function (err) {
+//            return res.status(500).json({
+//                message: 'Internal Server Error'
+//            });
+//        });
+//});
 
 
 
