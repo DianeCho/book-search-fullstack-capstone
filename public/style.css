@@ -18,6 +18,10 @@ body {
     color: ghostwhite;
 }
 
+ul {
+    list-style-type: none;
+}
+
 .demoMessage {
     position: fixed;
     top: 0px;
@@ -96,7 +100,10 @@ main {
     list-style-type: upper-latin;
     text-align: left;
     font-size: 20px;
-    margin-left: 30%;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    /*    margin-left: 30%;*/
 }
 
 
@@ -180,8 +187,9 @@ button:hover {
 
 button.addbtn {
 
-    width: 16%;
-    margin-left: 42%;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
 }
 
 .deleteDB {
@@ -199,7 +207,10 @@ button.addbtn {
 }
 
 div.container.continueBtnWrapper {
-    margin-left: 30%;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    width: 50%;
 }
 
 .newuser-box button1 {
@@ -240,7 +251,7 @@ span.newuser {
 .goodreads-search-results img {
     margin-top: 40px;
     display: block;
-    width: 100%;
+    width: 50%;
     height: auto;
     margin-left: auto;
     margin-right: auto;
@@ -253,26 +264,32 @@ span.newuser {
 
 .goodreads-search-results li {
 
-    display: inline-block;
-    margin-left: 40%;
-
-
+    /*    display: inline-block;*/
 }
 
+li {
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    width: 75%;
+
+}
 
 .bookslist li,
 .ingredientslist li {
+    /*
     margin: 4px;
     border: none;
+*/
 }
 
 .bookslist li {
+    margin-left: auto;
+    margin-right: auto;
     display: block;
-    margin: 10px;
-    /* margin-left: 25%; */
-    width: 90%;
-    margin: 0.5rem auto;
+    padding-bottom: 2rem;
     font-size: 20px;
+    text-align: center;
 }
 
 .ingredientlistfromrecipe {
@@ -289,7 +306,7 @@ span.newuser {
 }
 
 .reviewbookbox {
-    width: 25%;
+    /*    width: 25%;*/
 }
 
 .booktitle {
@@ -299,7 +316,9 @@ span.newuser {
 }
 
 .bookAuthor {
-    margin-left: 40%;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
 }
 
 .booktitle label {
@@ -349,19 +368,22 @@ label {
 img.books {
     border-radius: 20px;
     margin-top: 5%;
-    width: 40%;
-    height: 50%;
+
 }
 
 .books {
-    height: 60px;
-    width: 80px;
+
+    margin-left: auto;
+    margin-right: auto;
     display: block;
-    margin-left: 30%;
 }
 
 div#optionbox.container {
-    margin-left: 25%;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+    /*    width: 50%;*/
+    padding-left: 25%;
 }
 
 footer {

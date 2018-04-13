@@ -429,21 +429,21 @@ app.get('/book-search-title/:titleName', (req, res) => {
 //});
 
 
-////get shortlist api endpoint
-//app.get('/retrieve-sList/', function (req, res) {
-//    list.find({}).sort({
-//        ingredient: 1
-//    }).exec(function (err, item) {
-//        //console.log(item);
-//        if (err) {
-//            return res.status(500).json({
-//                message: 'Internal Server Error'
-//            });
-//        }
-//        //console.log(item);
-//        res.status(200).json(item);
-//    })
-//})
+//get shortlist api endpoint
+app.get('/retrieve-sList/', function (req, res) {
+    book.find({}).sort({
+        title: 0
+    }).exec(function (err, item) {
+        //console.log(item);
+        if (err) {
+            return res.status(500).json({
+                message: 'Internal Server Error'
+            });
+        }
+        //console.log(item);
+        res.status(200).json(item);
+    })
+})
 
 
 //add recipe api endpoint to db
