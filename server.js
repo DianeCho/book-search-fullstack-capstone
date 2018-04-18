@@ -7,6 +7,7 @@ const SimpleGoodreads = require('simple-goodreads');
 const mongoose = require('mongoose');
 const bcrypt = require('bcryptjs');
 const config = require('./config');
+const cors = require('cors');
 const bodyParser = require('body-parser');
 
 
@@ -17,6 +18,7 @@ var list = require('./models/list');
 
 //creating app object, add multiple endpoints
 const app = express();
+app.use(cors());
 app.use(express.static('public'));
 app.use(bodyParser.json());
 

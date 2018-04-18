@@ -24,6 +24,7 @@
         "bcrypt": "^0.8.7",
         "bcryptjs": "^2.4.3",
         "body-parser": "^1.15.2",
+        "cors": "^2.8.4",
         "express": "^4.14.0",
         "mongodb": "^2.2.9",
         "mongoose": "^4.5.10",
