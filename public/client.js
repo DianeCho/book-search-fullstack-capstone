@@ -46,7 +46,7 @@ $(document).ready(function () {
     $('.js-booklist-page').hide();
     $('.js-login-page').hide();
     $('.js-newuser-page').hide();
-    //    $("#messageBox").hide();
+        $("#messageBox").hide();
 });
 
 //button triggers
