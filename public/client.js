@@ -416,6 +416,7 @@ $(document).on('click', '.reviewbtn', function (event) {
                 })
                 .done(function (result) {
                     console.log(result);
+                displayError("Review updated");
                     buildList(result);
                 })
                 .fail(function (jqXHR, error, errorThrown) {
